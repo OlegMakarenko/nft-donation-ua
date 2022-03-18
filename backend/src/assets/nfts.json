@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1000,
+        "name": "Ruzzkij Voennyj Korabl",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "mosaicId": "70C65ACE553F29CE",
+        "price": 50,
+        "author": "Name"
+    },
+    {
+        "id": 1001,
+        "name": "Bayraktar",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "mosaicId": "7581894BD610C0E4",
+        "price": 10000,
+        "author": "Name"
+    }
+]
