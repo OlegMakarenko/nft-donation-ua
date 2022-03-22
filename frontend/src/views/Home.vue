@@ -7,16 +7,11 @@
 					<div class="section-about">
 						<div class="content-about">
 							<div class="text-crop margin-b">
-								<h2 class="title">Save Ukraine from Russian invasion</h2>
+								<h2 class="title">Stand with Ukraine <br> the Donation Platform</h2>
 							</div>
 							<div class="text-crop">
 								<p class="hero">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.
-								</p>
-								<p>
-									<router-link to="/account/">
-										View your NFTs
-									</router-link>
+									Ukraine is attacked by the Russian army. People's ouses, schools and entire cities are being destroyed. The Russian army behaves ruthlessly, sparing neither children nor old people. You can help Ukraine by making a donation in XYM to this address ADDR. Tokens will be sold and transferred to the account of the Ukrainian army and humanitarian aid. You also have the opportunity to get NFT images, which you can find below. 
 								</p>
 							</div>
 						</div>
@@ -27,7 +22,7 @@
 			<img class="image-rockets image-desktop" src="../assets/bg-rockets.png" />
 			<img class="image-rockets image-mobile" src="../assets/bg-rockets-mobile.png" />
 			<div class="nft-content content-center">
-				<WidthLimiter>
+				<WidthLimiter class="margin-b">
 					<div class="nft-list-wrapper">
 						<div class="nft-list grid-gap">
 							<NFTCard
@@ -165,11 +160,8 @@ export default {
 	}
 
 	.nft-list {
-		display: inline-flex;
-		flex-grow: 0;
-		flex-shrink: 1;
-		flex-direction: row;
-		justify-content: center;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr 1fr;
 		flex-wrap: wrap;
 		margin: 0 auto;
 	}
@@ -182,6 +174,12 @@ export default {
 
 	.image-symbol {
 		height: 200px !important;
+	}
+
+	.nft-content {
+		.nft-list {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
 	}
 }
 
@@ -212,6 +210,20 @@ export default {
 			width: 25%;
 			order: 1;
 			margin-bottom: $margin-mobile-base;
+		}
+	}
+
+	.nft-content {
+		.nft-list {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+}
+
+@media #{$screen-mobile} {
+	.nft-content {
+		.nft-list {
+			grid-template-columns: 1fr;
 		}
 	}
 }

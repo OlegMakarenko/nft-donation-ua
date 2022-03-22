@@ -2,7 +2,9 @@
     <div class="header-container">
         <WidthLimiter>
             <div class="header-inner">
-                <img class="image-flag" :src="imgFlag" />
+                <router-link class="header-nav-link" to="/" :active="$route.name === 'home'">
+                    <img class="image-flag" :src="imgFlag" />
+                </router-link>
                 <div class="header-nav">
                     <router-link class="header-nav-link" to="/" :active="$route.name === 'home'">
                         Home

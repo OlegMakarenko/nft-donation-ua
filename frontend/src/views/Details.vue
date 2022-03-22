@@ -11,7 +11,7 @@
 					</div>
 					
 					<div class="margin-b text-crop">
-						<span class="item-value">#{{ id }}</span> <a class="mosaic-id" :href="mosaicExplorerURL"><img :src="imgMosaic" />Mosaic: {{ mosaicId }}</a>
+						<span class="item-value">#{{ id }}</span> <a class="mosaic-id" :href="mosaicExplorerURL">Mosaic: {{ mosaicId }}</a>
 					</div>
 				
 					<div class="row-purchase">

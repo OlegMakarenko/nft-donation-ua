@@ -127,16 +127,17 @@ export class BlockchainService {
         networkConfig,
         account,
         directionFilter,
-        pageNumber = 0,
-        unconfirmed = false,
+        pageNumber = 1,
+        pageSize = 100,
+        transactionTypes = [TransactionType.TRANSFER]
     ) => {
         console.log(`[getTransactions] Getting transactions`);
         const transactionHttp = new TransactionHttp(networkConfig.nodeUrl);
         const searchCriteria = {
             pageNumber,
-            pageSize: 100,
-            order: Order.Desc,
-            type: [TransactionType.TRANSFER],
+            pageSize,
+            order: Order.Asc,
+            type: transactionTypes,
             group: TransactionGroup.Confirmed,
         };
 
@@ -154,16 +155,27 @@ export class BlockchainService {
 
         try {
             const transactionsPage = await transactionHttp.search(searchCriteria).toPromise();
-            if (!unconfirmed || pageNumber !== 1) {
-                return transactionsPage.data;
-            }
-            const transactionsUnconfirmedPage = await transactionHttp.search(searchCriteria).toPromise();
 
-            return [...transactionsUnconfirmedPage.data, ...transactionsPage.data];
+            return transactionsPage.data;
         } catch (e) {
             console.error(`[getTransactions] failed to fetch transactions. \tError: ${e.message}.`);
             throw e;
         }
+    };
+
+    static getAccountInfo = (
+        networkConfig, 
+        address,
+    ) => {
+        const repositoryFactoryHttp = new RepositoryFactoryHttp(networkConfig.nodeUrl, {
+            networkType: networkConfig.networkType,
+            generationHash: networkConfig.generationHash
+        });
+
+        return repositoryFactoryHttp
+            .createAccountRepository()
+            .getAccountInfo(Address.createFromRawAddress(address))
+			.toPromise();
     };
 
     static getAccountMosaics = (

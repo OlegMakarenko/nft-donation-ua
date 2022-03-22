@@ -100,6 +100,16 @@ h3 {
     &.title {
         color: var(--color-lightmode-text-title);
     }
+
+    &.title-purple {
+        background: var(--gradient-darkmode-gradient-purple-title);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    &.title-yellow {
+        color: var(--color-flag-yellow);
+    }
 }
 
 h4 {

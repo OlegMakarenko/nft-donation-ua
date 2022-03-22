@@ -66,7 +66,7 @@ export default {
 .nft-card {
     z-index: 3;
 	position: relative;
-    width: 256px;
+    width: 100%;
     display: inline-block;
     border: 3px solid #000;
     border-radius: $border-radius;
@@ -90,7 +90,7 @@ export default {
         infinite
         none
         running;
-    min-height: 256px;
+    min-height: 128px;
 }
 
 .nft-image {
@@ -115,10 +115,10 @@ export default {
     }
 
     .nft-price {
-        color: var(--color-flag-yellow);
+        color: var(--color-flag-blue-lighter);
         text-align: right;
         width: 100%;
-        opacity: 0.8;
+        opacity: 1;
     }
 }
 
@@ -138,9 +138,7 @@ export default {
 }
 
 @media #{$screen-mobile} {
-    .nft-card {
-        width: 80%;
-	}
+
 }
 
 /* @keyframes bg-loading {

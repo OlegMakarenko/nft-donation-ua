@@ -1,7 +1,8 @@
-import { Address, MosaicId, PublicAccount } from 'symbol-sdk';
+import { Address, MosaicId, PublicAccount, TransactionType } from 'symbol-sdk';
 import * as config from '../config/config.json';
 import { BlockchainService } from '../services/BlockchainService';
 import { NFTService } from '../services/NFTService';
+import { stringToCoordArray } from '../utils';
 
 export default {
 	namespaced: true,
@@ -37,7 +38,7 @@ export default {
 			const mosaicId = new MosaicId(rawMosaicId);
 			const networkConfig = rootGetters['api/networkConfig'];
 			const cachedNFTs = rootGetters['nft/cachedNFTs'];
-			const cachedNFT = cachedNFTs.find(NFT => new MosaicId(NFT.mosaicId).equals(mosaicId))
+			const cachedNFT = cachedNFTs.find(NFT => new MosaicId(NFT.mosaicId).equals(mosaicId));
 			
 			if(!cachedNFT) {
 				throw Error(`Provided mosaicId is not cached`)
@@ -47,6 +48,8 @@ export default {
 			const mainAccount = PublicAccount.createFromPublicKey(publicKey, networkConfig.networkType);
 			const mainAccountMosiacs = await BlockchainService.getAccountMosaics(networkConfig, mainAccount.address);
 			const mosaic = mainAccountMosiacs.find(mosaic => mosaic.mosaicInfo.id.equals(mosaicId));
+
+			const loadedNFT = await NFTService.getNFTUsingGarushParser(networkConfig, mainAccount.address, mosaicId);
             
 			let availableCount = 0;
 			let totalCount = 0;
@@ -61,6 +64,7 @@ export default {
 
 			return NFTService.createListedNFTInfo({
 				...cachedNFT,
+				...loadedNFT,
 				totalCount,
 				availableCount
 			})
@@ -118,8 +122,39 @@ export default {
 			}
 		},
 
+		loadAccountNFTMapCoords: async ({rootGetters}, rawAddress) => {
+			console.log(`[api/loadAccountNFTMapCoords] Load NFTs by address = ${rawAddress}`);
+			const networkConfig = rootGetters['api/networkConfig'];
+
+			const address = Address.createFromRawAddress(rawAddress);
+			const accountInfo = await BlockchainService.getAccountInfo(networkConfig, rawAddress);
+			const publicKey = accountInfo.publicKey;
+
+			const accountTransactions = await BlockchainService.getTransactions(
+				networkConfig, 
+				{ address },
+				'all',
+				1,
+				15,
+				[],
+			);
+
+			let coordString = accountTransactions.reduce(
+				(accumulator, tx) => accumulator + tx.transactionInfo.hash, 
+				address.encoded()
+			);
+
+			if (publicKey !== '0000000000000000000000000000000000000000000000000000000000000000') {
+				coordString = publicKey + coordString + publicKey;
+			}
+
+			coordString = coordString + address.encoded();
+			
+			return stringToCoordArray(coordString);
+		},
+
 		loadAccountNFTs: async ({ state, rootGetters }, rawAddress) => {
-			console.log(`[api/loadByAddress] Load NFTs by address = ${rawAddress}`);
+			console.log(`[api/loadAccountNFTs] Load NFTs by address = ${rawAddress}`);
 			const networkConfig = rootGetters['api/networkConfig'];
 			const cachedNFTs = rootGetters['nft/cachedNFTs'];
 			const publicKey = config.MAIN_ACCOUNT_PUBLIC_KEY;
