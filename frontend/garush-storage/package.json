@@ -29,7 +29,8 @@
         "lint:fix": "eslint src/ --ext .ts --fix",
         "style:fix": "npm run create-index-files && npm run prettier && npm run lint:fix",
         "create-index-files": "cti create ./src -b -n -e commands",
-        "test": "nyc --reporter=lcov --extension .ts mocha -r ts-node/register --timeout 600000 --forbid-only \"test/**/*.test.ts\""
+        "test": "nyc --reporter=lcov --extension .ts mocha -r ts-node/register --timeout 600000 --forbid-only \"test/**/*.test.ts\"",
+        "postinstall": "npm run build"
     },
     "mocha": {
         "timeout": 40000
