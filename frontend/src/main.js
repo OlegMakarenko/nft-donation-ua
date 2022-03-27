@@ -19,3 +19,11 @@ new Vue({
 	store,
 	render: h => h(App)
 }).$mount('#app');
+
+window.onload = function() {
+    const root = document.getElementById('app');
+
+    if (root) {
+        root.classList.add('visible');
+    }
+};

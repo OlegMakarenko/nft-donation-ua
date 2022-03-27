@@ -1,5 +1,5 @@
 <template>
-	<div id="app">
+	<div id="app" class="root-fetching">
 		<TheHeader />
         <div class="page-wrapper margin-t">
             <transition name="view">
