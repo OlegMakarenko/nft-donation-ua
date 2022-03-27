@@ -58,9 +58,9 @@
 
 					<div class="margin-b text-crop">
 						<p>
-						To receive NFT to your account you must send transfer of <code>{{ amount }} XYM</code> to this address: <code>{{ address }}</code> with following message: <code>{{ id }}</code>. Please DO  NOT encrypt the message, otherwise transfer will not be processed.
+						To receive NFT to your account you should send transfer of <code>{{ amount }} XYM</code> to this address: <code>{{ address }}</code> with following message: <code>{{ id }}</code>. Please DO  NOT encrypt the message, otherwise transfer will not be processed.
 						</p>
-						<p>Fill the transfer transaction with the data below or scan the QR code with the wallet scanner.</p>
+						<p>Fill the transfer transaction with the data below or scan the QR code with the wallet's scanner.</p>
 					</div>
 
 					<hr class="separastor" />

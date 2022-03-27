@@ -1,7 +1,7 @@
 import BootstrapVue from 'bootstrap-vue';
+import { ResourceService } from './services/ResourceService'
 import 'vue-material-design-icons/styles.css';
 import '@mdi/font/css/materialdesignicons.css';
-import './styles/fonts.scss';
 import './styles/main.scss';
 
 import Vue from 'vue';
@@ -20,10 +20,13 @@ new Vue({
 	render: h => h(App)
 }).$mount('#app');
 
-window.onload = function() {
-    const root = document.getElementById('app');
 
-    if (root) {
-        root.classList.add('visible');
-    }
+window.onload = function() {
+	ResourceService.preload().then(() => {
+		const root = document.getElementById('app');
+
+		if (root) {
+			root.classList.add('visible');
+		}
+	});
 };
