@@ -1,4 +1,4 @@
-import { StorageService, NFTService } from 'garush-storage';
+import { StorageService } from 'garush-storage';
 import * as fs from 'fs';
 import { 
     Account,
@@ -203,7 +203,7 @@ async function defineMosaic(nft: NFT, rootTransactionHash: string) {
 }
 
 async function main() {
-    console.log('[Main] Started');
+    console.log('[Main] Task started');
     const nftList = NFTList;
 
     for (const nft of nftList) {
@@ -218,11 +218,11 @@ async function main() {
         }
     }
 
-    console.log('[Main] Raedy');
+    console.log('[Main] Task finished');
     console.log(JSON.stringify(nftList.map(nft => ({
         id: nft.id,
         name: nft.name,
-        description: 'Lorem ipsum ipsum lorem',
+        description: '',
         mosaicId: nft.mosaic.mosaicId.toHex(),
         price: nft.price
     }))));
