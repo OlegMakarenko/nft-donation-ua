@@ -1,18 +1,149 @@
 [
     {
         "id": 1000,
-        "name": "Ruzzkij Voennyj Korabl",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "mosaicId": "70C65ACE553F29CE",
-        "price": 50,
-        "author": "Name"
+        "name": "Flower",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "1804899683FF377D",
+        "price": 8
     },
     {
         "id": 1001,
+        "name": "Ukrainian Flag",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "49DB04D43E714646",
+        "price": 10
+    },
+    {
+        "id": 1002,
+        "name": "Tryzub",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "1703495A908A971F",
+        "price": 10
+    },
+    {
+        "id": 1003,
+        "name": "Medicals",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "2E100F7517DE0780",
+        "price": 50
+    },
+    {
+        "id": 1004,
+        "name": "Nutrition",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "206B3C1FB4BFE575",
+        "price": 50
+    },
+    {
+        "id": 1005,
+        "name": "Supply",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "5504FD4DFC894050",
+        "price": 50
+    },
+    {
+        "id": 1006,
+        "name": "Ambulance",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "60A306702782EC45",
+        "price": 50
+    },
+    {
+        "id": 1007,
+        "name": "Mriya",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "7941B45D368CC650",
+        "price": 100
+    },
+    {
+        "id": 1008,
+        "name": "Petrolium",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "388E07A1E8F0C10F",
+        "price": 100
+    },
+    {
+        "id": 1009,
+        "name": "Helmet",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "6F22EEA24BEF549B",
+        "price": 100
+    },
+    {
+        "id": 1010,
+        "name": "Body Armour",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "4E9CBC596E61D12E",
+        "price": 100
+    },
+    {
+        "id": 1011,
+        "name": "Molotov",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "0730B8FB09E99DA5",
+        "price": 100
+    },
+    {
+        "id": 1012,
+        "name": "Ukrainian Tank",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "21A7A2C1263BE680",
+        "price": 200
+    },
+    {
+        "id": 1013,
+        "name": "Javelin",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "086C3C796D3F3843",
+        "price": 200
+    },
+    {
+        "id": 1014,
         "name": "Bayraktar",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        "mosaicId": "7581894BD610C0E4",
-        "price": 10000,
-        "author": "Name"
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "75E00B2F9BDAA7EE",
+        "price": 500
+    },
+    {
+        "id": 1015,
+        "name": "Mig 29",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "546864545951BA2E",
+        "price": 500
+    },
+    {
+        "id": 1016,
+        "name": "Captured Tank",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "27E1DCCA622899B8",
+        "price": 5000
+    },
+    {
+        "id": 1017,
+        "name": "Russian Warship",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "2166F1FDA72EDBB6",
+        "price": 7000
+    },
+    {
+        "id": 1018,
+        "name": "Zelenskyi",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "30B483E8A8BFB1BC",
+        "price": 20000
+    },
+    {
+        "id": 1019,
+        "name": "russian-nazzies",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "76FB8E051DD1A32D",
+        "price": 20000
+    },
+    {
+        "id": 1020,
+        "name": "Huilo",
+        "description": "Lorem ipsum ipsum lorem",
+        "mosaicId": "39381BFFAABA08CD",
+        "price": 35000
     }
 ]

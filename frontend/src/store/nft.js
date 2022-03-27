@@ -41,7 +41,7 @@ export default {
 			const cachedNFT = cachedNFTs.find(NFT => new MosaicId(NFT.mosaicId).equals(mosaicId));
 			
 			if(!cachedNFT) {
-				throw Error(`Provided mosaicId is not cached`)
+				throw Error(`NFT does not exist`)
 			}
 
 			const publicKey = config.MAIN_ACCOUNT_PUBLIC_KEY;
@@ -69,6 +69,26 @@ export default {
 				availableCount
 			})
 			
+		},
+
+		getCachedNFTDetailsByMosaicId: ({ rootGetters }, rawMosaicId) => {
+			console.log(`[api/getCachedNFTDetailsByMosaicId] getting by mosaicId = ${rawMosaicId}`);
+			const mosaicId = new MosaicId(rawMosaicId);
+			const cachedNFTs = rootGetters['nft/cachedNFTs'];
+			const cachedNFT = cachedNFTs.find(NFT => new MosaicId(NFT.mosaicId).equals(mosaicId));
+			
+			if(!cachedNFT) {
+				throw Error(`NFT does not exist`)
+			}
+            
+			const availableCount = 0;
+			const totalCount = 0;
+
+			return NFTService.createListedNFTInfo({
+				...cachedNFT,
+				totalCount,
+				availableCount
+			});
 		},
 
 		loadListedNFTs: async ({ commit, rootGetters }) => {
@@ -175,12 +195,7 @@ export default {
 					count: mosaic.amount.compact()
 				}));
 
-			console.log({ownedNFTInfos});
-            // const mosaicInfos = await BlockchainService.getMosaicInfos(networkConfig, [mosaicIds]);
-			// const filteredMosaiIds = mosaicInfos
-			// 	.filter(mosaicInfo => mosaicInfo.ownerAddress.equals(mainAccount.address))
-
-			return ownedNFTInfos.sort((a, b) => a.id - b.id);
+			return ownedNFTInfos.sort((a, b) => b.size - a.size);
 		},
 	}
 };

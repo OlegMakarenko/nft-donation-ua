@@ -11,26 +11,12 @@
 				</div>
 			</WidthLimiter>
 		</div>
-		<div class="content-center account-background">
-			<div class="map-wrapper margin-b">
-				<div v-for="(nft, nftIndex) in ownedNFTs" :key="'block' + nftIndex">
-					<img 
-						v-for="(piece, pieceIndex) in getPieces(nft)"
-						class="nft-map-image"
-						:style="piece"
-						:src="nft.image"
-						:key="'block' + nftIndex +'nft' + pieceIndex" 
-					/>
-				</div>
-				<img class="map-image" src="../assets/ukraine-main.png" />
-			</div>
-		</div>
-		<div v-if="ownedNFTs.length" class="content-center margin-b account-background">
+		<div v-if="ownedNFTs.length" class="content-center account-background">
 			<WidthLimiter class="margin-b">
-				<div class="text-crop margin-b margin-t">
+				<div class="text-crop margin-b">
 					<h2 class="title">Owned NFTs</h2>
 				</div>
-				<div class="grid-gap-sm nft-list">
+				<div class="grid-gap nft-list">
 					<div v-for="(nft, nftIndex) in ownedNFTs" class="nft-list-item" :key="'block' + nftIndex">
 						<router-link :to="'/nft/' + nft.mosaicId">
 							<img 
@@ -50,17 +36,36 @@
 				</div>
 			</WidthLimiter>
 		</div>
-	</div>
-	<WidthLimiter v-else>
-		<div class="content-center">
-			<h3> Please wait </h3>
+		<div class="content-center account-background">
+			<div class="map-wrapper margin-b">
+				<div v-for="(nft, nftIndex) in ownedNFTs" :key="'block' + nftIndex">
+					<img 
+						v-for="(piece, pieceIndex) in getPieces(nft)"
+						class="nft-map-image"
+						:style="piece"
+						:src="nft.image"
+						:key="'block' + nftIndex +'nft' + pieceIndex" 
+					/>
+				</div>
+				<img class="map-image" src="../assets/ukraine-main.png" />
+			</div>
 		</div>
-	</WidthLimiter>
+
+		<div v-if="ownedNFTs.length && totalXYM" class="content-center account-background">
+			<div class="text-crop margin-b">
+				<h3 class="title-purple text-center">
+					This account owns NFTs for a total of {{totalXYM}} XYM.
+				</h3>
+			</div>
+		</div>
+	</div>
+	<LoadingSpinner v-else />
 </template>
 
 <script>
 import { verifyAddress, getNFTImageMapStyle } from '../utils';
 import Button from '../components/Button.vue';
+import LoadingSpinner from '../components/LoadingSpinner.vue';
 import TextBox from '../components/TextBox.vue';
 import WidthLimiter from '../components/WidthLimiter.vue';
 
@@ -69,6 +74,7 @@ export default {
 
 	components: {
 		Button,
+		LoadingSpinner,
 		TextBox,
 		WidthLimiter
 	},
@@ -78,8 +84,19 @@ export default {
 			isLoading: false,
 			rawAddress: '',
 			ownedNFTs: [],
-			coordArray: []
+			coordArray: [],
 		};
+	},
+
+	computed: {
+		totalXYM() {
+			let total = 0;
+
+			this.ownedNFTs.forEach(nft => total += nft.count * nft.price);
+			console.log(this.ownedNFTs)
+
+			return total;
+		}
 	},
 
 	mounted() {
@@ -141,18 +158,7 @@ export default {
 		async loadAccountNFTs() {
 			this.isLoading = true;
 			try {
-				// const address = ([
-				// 	'TDD3UFP2TRDC4IAB45SJ476R5RAN2MF3UMXO3CA',
-				// 	'TAR6GJWQKBBGKO3CPBM6RJPXFFSITBQ2EPVVJMQ',
-				// 	'TCQ3J6DHPJ6I4VUPJ6FUOMSQL3KYKEI66VKY43Q',
-				// 	'TAXIJSEX4GTVBEWZ7YPQ742BBIB2SO7JIIGPXHQ',
-				// 	'TCVSR42OL2D2ELIDXLVXSDAZUEVBUTTLU7IJ3GI',
-				// 	'TA6ENYBFFMGSJ5P7ZIZH5AIXSO47NLEYS33LT3Y',
-				// 	'TAKQOMF4SN3BOIUDXDTRIHUI5X5RETZEDLKLATI',
-				// 	'TAUZCQ3QODM5LTTEC6CBMZX6XLOH7W5H5VZ2AKY',
-				// 	'TBMXA34JC23JN5K45CXH7ZICAJC5VMW2KRYUIMA'
-				// ])[1]// this.rawAddress
-				this.coordArray =  await this.$store.dispatch('nft/loadAccountNFTMapCoords', this.rawAddress);
+				this.coordArray = await this.$store.dispatch('nft/loadAccountNFTMapCoords', this.rawAddress);
 			}
 			catch(e) {
 				this.isLoading = false;
@@ -166,6 +172,20 @@ export default {
 
 			try {
 				this.ownedNFTs = await this.$store.dispatch('nft/loadAccountNFTs', this.rawAddress);
+				let counter = 0;
+				this.ownedNFTs.forEach(nft => {
+					while(nft.position.length < nft.count) {
+						if(this.coordArray[counter]) {
+							nft.position.push({x: this.coordArray[counter][0], y: this.coordArray[counter][1]});
+							++counter;
+						}
+						else {
+							break;
+						}
+					}
+				});
+				this.$set(this, 'ownedNFTs', [...this.ownedNFTs]);
+				console.log(this.ownedNFTs)
 			}
 			catch(e) {
 				this.isLoading = false;
@@ -231,7 +251,7 @@ export default {
 
 .nft-list {
 	display: grid;
-	grid-template-columns: 25% 25% 25% 25%;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .nft-list-item {
@@ -281,7 +301,7 @@ export default {
 	}
 
 	.nft-list {
-		grid-template-columns: 33% 33% 33%;
+		grid-template-columns: 1fr 1fr 1fr;
 	}
 }
 
@@ -291,7 +311,7 @@ export default {
 	}
 
 	.nft-list {
-		grid-template-columns: 50% 50%;
+		grid-template-columns: 1fr 1fr;
 	}
 }
 

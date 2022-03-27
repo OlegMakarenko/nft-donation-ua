@@ -1,17 +1,17 @@
 <template>
 	<div class="details">
-		<WidthLimiter v-if="!isLoading && !isError">
+		<WidthLimiter v-if="!isError">
 			<div class="section-nft">
-				<div class="card nft-image-container">
+				<div class="card nft-image-container" :class="{'bg-loading': isLoading || isCacheLoading}">
 					<img :src="image" />
 				</div>
-				<div class="padding card nft-details">
+				<div class="padding card nft-details" :class="{'bg-loading': isLoading || isCacheLoading}">
 					<div class="margin-b-sm text-crop title-nft-name">
 						<h2 class="title-yellow inline">{{ name }}</h2>
 					</div>
 					
 					<div class="margin-b text-crop">
-						<span class="item-value">#{{ id }}</span> <a class="mosaic-id" :href="mosaicExplorerURL">Mosaic: {{ mosaicId }}</a>
+						<span class="item-value">#{{ id }}</span> <a class="mosaic-id" :href="mosaicExplorerURL"  target="_blank">Mosaic: {{ mosaicId }}</a>
 					</div>
 				
 					<div class="row-purchase">
@@ -22,7 +22,7 @@
 						<div>
 							<div class="label item-title">Available:</div>
 							<div class="">
-								<span class="col-availability-value">{{ availableCount }}</span> / 
+								<span class="col-availability-value">{{ availableCountText }}</span> / 
 								<span>{{ totalCount }}</span>
 							</div>
 						</div>
@@ -37,7 +37,7 @@
 					<h3>How to get NFT</h3>
 				</div>
 				
-				<div class="margin-b text-crop">
+				<div v-if="!isUserWarned" class="margin-b text-crop">
 					<p>
 					Caution! This is donation service and NFTs are not refundable. Please note that NFT will not be send to your account if transferred XYM ammount is less then it's price, message contains wrong number or NFT is out of stock. Transferred funds cannot be returned back to your account.
 					</p>
@@ -60,31 +60,54 @@
 						<p>
 						To receive NFT to your account you must send transfer of <code>{{ amount }} XYM</code> to this address: <code>{{ address }}</code> with following message: <code>{{ id }}</code>. Please DO  NOT encrypt the message, otherwise transfer will not be processed.
 						</p>
+						<p>Fill the transfer transaction with the data below or scan the QR code with the wallet scanner.</p>
 					</div>
 
-					<div class="margin-b text-crop text-red">
-						<p>
-							<div>1. To / Recipient Address:</div> 
-							<div class="copy-box bg-copy-icon pointer" @click="copy(address)">{{ address }}</div>
-						</p>
-						<p>
-							<div>2. Mosaic:</div>
-							<div class="copy-box">symbol.xym</div>
-						<p>
-						<p>
-							<div>3. Amount:</div>
-							<div class="copy-box bg-copy-icon pointer" @click="copy(amount)">{{ amount }}</div>
-						</p>
-						<p>
+					<hr class="separastor" />
+					
+					<div class="text-crop margin-b-sm">
+						<h4>Transaction</h4>
+					</div>
+
+					<div class="grid-gap-sm margin-b send-form">
+						<div class="text-crop text-red fullwidth">
+							<p>
+								<div>1. To / Recipient Address:</div> 
+								<div class="copy-box bg-copy-icon pointer" @click="copy(address)">{{ address }}</div>
+							</p>
+							<p>
+								<div>2. Mosaic:</div>
+								<div class="copy-box">symbol.xym</div>
+							</p>
+							<p>
+								<div>3. Amount:</div>
+								<div class="copy-box bg-copy-icon pointer" @click="copy(amount)">{{ amount }}</div>
+							</p>
+			
 							<div>4. Message:</div>
 							<div class="copy-box bg-copy-icon pointer" @click="copy(id)">{{ id }}</div>
+						
+						</div>
+						<p class="qr-wrapper">
+							<QRCode :address="address" :amount="amount" :message="id" />
 						</p>
 					</div>
 
+					<hr class="separastor" />
+
+					<div class="text-crop margin-b">
+						<h4>Mobile Wallet</h4>
+					</div>
 					<div class="margin-b text-crop">
 						<div class="guide-mobile content-center">
 							<img src="../assets/mobile-wallet.png" />
 						</div>
+					</div>
+
+					<hr class="separastor" />
+
+					<div class="text-crop margin-b">
+						<h4>Desktop Wallet</h4>
 					</div>
 					<div class="margin-b text-crop">
 						<div class="guide-mobile content-center">
@@ -94,7 +117,7 @@
 				</div>
 			</div>
 
-			<div v-else class="padding card section-payment margin-b">
+			<div v-else-if="!isLoading" class="padding card section-payment margin-b">
 				<div class="margin-b text-crop">
 					<h3>How to get NFT</h3>
 				</div>
@@ -105,23 +128,21 @@
 
 			<div style="height: 1px;" />
 		</WidthLimiter>
-		<WidthLimiter v-else-if="isLoading">
-			<div class="content-center">
-				<h3> Please wait </h3>
-			</div>
-		</WidthLimiter>
 		<WidthLimiter v-else-if="isError">
 			<div class="content-center">
-				<h3> No connection </h3>
+				<h3 class="text-center"> {{ errorMessage }} </h3>
 			</div>
 		</WidthLimiter>
+		<LoadingSpinner v-if="isCacheLoading || isLoading" />
 	</div>
 </template>
 
 <script>
 import Button from '../components/Button.vue';
 import CountSelector from '../components/CountSelector.vue';
+import LoadingSpinner from '../components/LoadingSpinner.vue';
 import WidthLimiter from '../components/WidthLimiter.vue';
+import QRCode from '../components/QRCode.vue';
 import { copyToClipboard } from '../utils'
 import * as config from '../config/config.json';
 
@@ -131,11 +152,14 @@ export default {
 	components: {
 		Button,
 		CountSelector,
-		WidthLimiter
+		LoadingSpinner,
+		WidthLimiter,
+		QRCode
 	},
 
 	data() {
 		return {
+			isCacheLoading: true,
 			isLoading: true,
 			isError: false,
 			id: null,
@@ -147,7 +171,8 @@ export default {
 			availableCount: 0,
 			totalCount: 0,
 			requestedCount: 1,
-			isUserWarned: false
+			isUserWarned: false,
+			errorMessage: ''
 		};
 	},
 
@@ -166,34 +191,63 @@ export default {
 		},
 		amount() {
 			return this.price * this.requestedCount;
+		},
+		availableCountText() {
+			if (this.isLoading) {
+				return '-';
+			}
+			else {
+				return this.availableCount;
+			}
 		}
 	},
 
 	mounted() {
-		this.isLoading = true;
-		this.isError = false;
-		const requestedMosaicId = this.$route.params.id;
-		this.$store.dispatch('nft/loadNFTDetailsByMosaicId', requestedMosaicId)
-			.then(nft => {
+		this.load();
+	},
+
+	methods: {
+		async load() {
+			this.isLoading = true;
+			this.isCacheLoading = true;
+			this.isError = false;
+			const requestedMosaicId = this.$route.params.id;
+			
+			try {
+				const nft = await this.$store.dispatch('nft/getCachedNFTDetailsByMosaicId', requestedMosaicId);
 				this.id = nft.id;
 				this.mosaicId = nft.mosaicId;
 				this.price = nft.price;
 				this.name = nft.name;
 				this.description = nft.description;
 				this.image = nft.image;
-				this.availableCount = nft.availableCount;
-				this.totalCount = nft.totalCount;
-				this.isLoading = false;
-				this.isError = false;
-			})
-			.catch(e => {
-				console.error('Failed to load NFT details', e)
-				this.isLoading = false;
-				this.isError = true;
-			});	
-	},
+			}
+			catch(e) {
+				console.error(`Failed to get cached NFT by mosaic id "${requestedMosaicId}"`, e);
+				this.errorMessage = e.message;
+			}
+			this.isCacheLoading = false;
+			
+			this.$store.dispatch('nft/loadNFTDetailsByMosaicId', requestedMosaicId)
+				.then(nft => {
+					this.id = nft.id;
+					this.mosaicId = nft.mosaicId;
+					this.price = nft.price;
+					this.name = nft.name;
+					this.description = nft.description;
+					this.image = nft.image;
+					this.availableCount = nft.availableCount;
+					this.totalCount = nft.totalCount;
+					this.isLoading = false;
+				})
+				.catch(e => {
+					console.error('Failed to load NFT details', e)
+					this.isLoading = false;
+					this.isError = true;
+					this.errorMessage = e.message;
+				});	
+		},
 
-	methods: {
 		async copy(text) {
 			try {
 				await copyToClipboard(text);
@@ -275,7 +329,7 @@ code {
 	border: 3px solid #000;
     border-radius: $border-radius;
     box-shadow: $box-shadow;
-    background: var(--color-darkmode-bg-main);
+    background-color: var(--color-darkmode-bg-main);
 }
 
 .separastor {
@@ -298,12 +352,19 @@ code {
 	}
 }
 
-.nft-details {
-
-}
-
 .section-payment {
 	margin-top: $margin-base;
+
+	.send-form {
+		display: grid;
+		grid-template-columns: auto 282px;
+
+		.qr-wrapper {
+			height: 100%;
+			display: flex;
+			align-items: flex-end;
+		}
+	}
 	
 	.text-red {
 		color: #f00;
@@ -348,6 +409,12 @@ code {
 	.col-availability-value {
 		font-size: var(--typography-web-desktop-h3-font-size);
 	}
+
+	.section-payment {
+		.send-form {
+			grid-template-columns: auto 230px;
+		}
+	}
 }
 
 @media #{$screen-tablet-sm} {
@@ -372,6 +439,20 @@ code {
 	.col-availability-value {
 		font-size: var(--typography-web-desktop-h3-font-size);
 	}
+
+	.section-payment {
+		.send-form {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+
+			.qr-wrapper {
+				display: block;
+				width: 256px;
+			}
+		}
+	}
 }
 
 @media #{$screen-mobile} {
@@ -391,6 +472,18 @@ code {
 
 	.section-payment {
 		margin-top: $margin-mobile-base;
+
+		.send-form {
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+
+			.qr-wrapper {
+				display: block;
+				width: 100%;
+			}
+		}
 	}
 
 	.section-terms {

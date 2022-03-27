@@ -90,6 +90,8 @@ export class DepositService {
         const account = Account.createFromPrivateKey(config.symbol.MAIN_ACCOUNT_PRIVATE_KEY, this.networkConfig.networkType);
         const allDeposits = [];
 
+        logger.info(`[getDeposits] Main account address: ${account.address.pretty()}`);
+
         let pageNumber = 1;
         while (true) {
             // Fetch main account incoming transactions by pageNumber
@@ -117,7 +119,7 @@ export class DepositService {
 
         logger.info(`[getDeposits] Fetched deposits: ${allDeposits.length}`);
 
-        return allDeposits;
+        return allDeposits.reverse();
     };
 
     // Process deposits. If deposit has correct nftId and amount - send the NFT to deposit signer account

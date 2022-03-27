@@ -7,7 +7,6 @@ interface NFT {
     description: string;
     mosaicId: string;
     price: number;
-    author: string;
 }
 
 interface NFTFileTransactionHeader {

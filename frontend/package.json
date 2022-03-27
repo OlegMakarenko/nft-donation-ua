@@ -18,6 +18,7 @@
     "bootstrap": "^4.5.3",
     "bootstrap-vue": "^2.21.2",
     "garush-storage": "file:./garush-storage",
+    "symbol-qr-library": "^0.14.2",
     "symbol-sdk": "^1.0.3-message-improvement-202111021446",
     "url-parse": "^1.5.2",
     "vue": "^2.6.11",

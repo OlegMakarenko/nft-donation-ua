@@ -1,9 +1,8 @@
-import { StorageService, StoreFileParams, NFTService } from 'garush-storage';
+import { StorageService, NFTService } from 'garush-storage';
 import * as fs from 'fs';
 import { 
     Account,
     AggregateTransaction,
-    AggregateTransactionCosignature,
     Deadline,
     KeyGenerator,
     MetadataTransactionService,
@@ -13,8 +12,7 @@ import {
     MosaicSupplyChangeAction,
     MosaicSupplyChangeTransaction,
     MosaicId, 
-    NetworkType, 
-    RepositoryFactory, 
+    NetworkType,  
     RepositoryFactoryHttp,
     TransactionService,
     UInt64
@@ -43,26 +41,27 @@ interface NFT {
 };
 
 const NFTList = [
-    {id: 1000, fileName: 'flower', name: 'Flower',                          price: 8, supply: 500, mosaic: getMosaic()},
+    {id: 1000, fileName: 'flower', name: 'Flower',                          price: 8, supply: 200, mosaic: getMosaic()},
     {id: 1001, fileName: 'ukrainian-national-flag', name: 'Ukrainian Flag', price: 10, supply: 500, mosaic: getMosaic()},
     {id: 1002, fileName: 'ukrainian-national-symbol', name: 'Tryzub',       price: 10, supply: 500, mosaic: getMosaic()},
-    {id: 1003, fileName: 'kyiv-s-ghost-2', name: 'Kyiv\'s Ghost',           price: 10, supply: 500, mosaic: getMosaic()},
-    {id: 1004, fileName: 'medicals', name: 'Medicals',                      price: 15, supply: 500, mosaic: getMosaic()},
-    {id: 1005, fileName: 'supply', name: 'Supply',                          price: 22, supply: 500, mosaic: getMosaic()},
-    {id: 1006, fileName: 'ambulance', name: 'Ambulance',                    price: 36, supply: 500, mosaic: getMosaic()},
-    {id: 1007, fileName: 'mriya', name: 'Mriya',                            price: 72, supply: 500, mosaic: getMosaic()},
-    {id: 1008, fileName: 'body-armour', name: 'Body Armour',                price: 72, supply: 500, mosaic: getMosaic()},
-    {id: 1009, fileName: 'helmet', name: 'Helmet',                          price: 72, supply: 500, mosaic: getMosaic()},
-    {id: 1010, fileName: 'nutrition', name: 'Nutrition',                    price: 72, supply: 500, mosaic: getMosaic()},
-    {id: 1011, fileName: 'petrolium', name: 'Petrolium',                    price: 72, supply: 500, mosaic: getMosaic()},
-    {id: 1012, fileName: 'tank', name: 'Ukrainian Tank',                    price: 358, supply: 200, mosaic: getMosaic()},
-    {id: 1013, fileName: 'javelin', name: 'Javelin',                        price: 715, supply: 100, mosaic: getMosaic()},
-    {id: 1014, fileName: 'bayraktar', name: 'Bayraktar',                    price: 1429, supply: 50, mosaic: getMosaic()},
-    {id: 1015, fileName: 'mig-29', name: 'Mig 29',                          price: 2858, supply: 25, mosaic: getMosaic()},
-    {id: 1016, fileName: 'tank-captured-2', name: 'Captured Tank',          price: 3572, supply: 20, mosaic: getMosaic()},
-    {id: 1017, fileName: 'zelenskyi', name: 'Zelenskyi',                    price: 7143, supply: 5, mosaic: getMosaic()},
-    {id: 1018, fileName: 'russian-nazzies', name: 'russian-nazzies',        price: 14286, supply: 2, mosaic: getMosaic()},
-    {id: 1019, fileName: 'huilo', name: 'Huilo',                            price: 35715, supply: 1, mosaic: getMosaic()},
+    {id: 1003, fileName: 'medicals', name: 'Medicals',                      price: 50, supply: 500, mosaic: getMosaic()},
+    {id: 1004, fileName: 'nutrition', name: 'Nutrition',                    price: 50, supply: 500, mosaic: getMosaic()},
+    {id: 1005, fileName: 'supply', name: 'Supply',                          price: 50, supply: 500, mosaic: getMosaic()},
+    {id: 1006, fileName: 'ambulance', name: 'Ambulance',                    price: 50, supply: 500, mosaic: getMosaic()},
+    {id: 1007, fileName: 'mriya', name: 'Mriya',                            price: 100, supply: 500, mosaic: getMosaic()},
+    {id: 1008, fileName: 'petrolium', name: 'Petrolium',                    price: 100, supply: 500, mosaic: getMosaic()},
+    {id: 1009, fileName: 'helmet', name: 'Helmet',                          price: 100, supply: 500, mosaic: getMosaic()},
+    {id: 1010, fileName: 'body-armour', name: 'Body Armour',                price: 100, supply: 500, mosaic: getMosaic()},
+    {id: 1011, fileName: 'molotov', name: 'Molotov',                        price: 100, supply: 500, mosaic: getMosaic()},
+    {id: 1012, fileName: 'tank', name: 'Ukrainian Tank',                    price: 200, supply: 100, mosaic: getMosaic()},
+    {id: 1013, fileName: 'javelin', name: 'Javelin',                        price: 200, supply: 100, mosaic: getMosaic()},
+    {id: 1014, fileName: 'bayraktar', name: 'Bayraktar',                    price: 500, supply: 50, mosaic: getMosaic()},
+    {id: 1015, fileName: 'mig-29', name: 'Mig 29',                          price: 500, supply: 50, mosaic: getMosaic()},
+    {id: 1016, fileName: 'tank-captured-2', name: 'Captured Tank',          price: 5000, supply: 20, mosaic: getMosaic()},
+    {id: 1017, fileName: 'warship', name: 'Russian Warship',                price: 7000, supply: 5, mosaic: getMosaic()},
+    {id: 1018, fileName: 'zelenskyi', name: 'Zelenskyi',                    price: 20000, supply: 5, mosaic: getMosaic()},
+    {id: 1019, fileName: 'russian-nazzies', name: 'russian-nazzies',        price: 20000, supply: 5, mosaic: getMosaic()},
+    {id: 1020, fileName: 'huilo', name: 'Huilo',                            price: 35000, supply: 1, mosaic: getMosaic()},
 ];
 
 function getMosaic(): MosaicDefinitionData {
@@ -203,20 +202,6 @@ async function defineMosaic(nft: NFT, rootTransactionHash: string) {
     }));
 }
 
-async function writeFile(hash: string, fileName: string) {
-    const repositoryFactory = new RepositoryFactoryHttp(config.nodeUrl, {
-        websocketUrl: config.websocketUrl,
-        networkType: config.networkType
-    });
-    
-    //@ts-ignore
-    const storage = new StorageService(repositoryFactory);
-
-    const file = await storage.loadImageFromHash(hash);
-
-    fs.writeFileSync(`./scripts/images/${fileName}-result.png`, file.content);
-}
-
 async function main() {
     console.log('[Main] Started');
     const nftList = NFTList;
@@ -244,4 +229,3 @@ async function main() {
 }
 
 main();
-// writeFile('0CB4F1B936909851057E4DCFB7CD77A804C690034A75A345BFDA5C8C4D875969', 'test');

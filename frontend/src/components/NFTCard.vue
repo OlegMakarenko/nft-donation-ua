@@ -1,5 +1,5 @@
 <template>
-    <router-link class="nft-card" :to="link">
+    <router-link class="nft-card" :class="{'bg-loading': isLoading}" :to="link" target="_blank">
         <div class="nft-image-container" :title="name">
             <img class="nft-image" :class="{'nft-unavailable': soldOut}" :src="image" :alt="name" />
         </div>
@@ -19,11 +19,17 @@
         <h3 v-if="soldOut" class="nft-sold-out">
             Sold Out
         </h3>
+        <LoadingSpinner small v-if="isLoading" />
     </router-link>
 </template>
 
 <script>
+import LoadingSpinner from '../components/LoadingSpinner.vue';
 export default {
+    components: {
+        LoadingSpinner
+    },
+
     props: {
         mosaicId: {
             type: String,
@@ -140,13 +146,4 @@ export default {
 @media #{$screen-mobile} {
 
 }
-
-/* @keyframes bg-loading {
-    from {
-        background-color: var(--color-darkmode-bg-gray);
-    }
-    to {
-        background-color: var(--color-darkmode-bg-main);
-    }
-} */
 </style>

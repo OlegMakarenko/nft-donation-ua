@@ -137,6 +137,10 @@ h4 {
     overflow: visible;
 }
 
+.text-center {
+    text-align: center;
+}
+
 .padding {
     padding: $padding-base;
 }
@@ -177,6 +181,64 @@ h4 {
 
 .inline {
     display: inline;
+}
+
+.fullwidth {
+    width: 100%;
+}
+
+// .bg-loading {
+//     background: linear-gradient(
+//         -45deg, 
+//         var(--color-lightmode-button-default-bg), 
+//         var(--color-darkmode-bg-navbar), 
+//         var(--color-darkmode-bg-gray), 
+//         var(--color-lightmode-button-default-bg),
+//     );
+// 	background-size: 400% 400%;
+//     animation-name: gradient;
+//     animation-duration: 2s;
+//     animation-iteration-count: infinite;
+// }
+
+.bg-loading {
+    position: relative !important;
+    border-width: 0 !important;
+    background: transparent  !important;
+    overflow: hidden;
+
+    &::after {
+        content: ' ';
+        position: absolute !important;
+        top: 3px;
+        left: 3px;
+        width: calc(100% - 6px);
+        height: calc(100% - 6px);
+        background-color: var(--color-darkmode-bg-main);
+        border-radius: $border-radius;
+        z-index: -1;
+    }
+
+    &::before {
+        content: ' ';
+        position: absolute !important;
+        top: -150%;
+        left: -150%;
+        width: 400%;
+        height: 400%;
+        background: conic-gradient(
+            #000,
+            #000,
+            #000,
+            #000,
+            var(--color-darkmode-data-color1),
+        );
+        border-radius: $border-radius;
+        z-index: -1;
+        transform: translate(-50%, -50%);
+        transform-origin: 50% 50%;
+        animation: loading 1.5s infinite linear;
+    }
 }
 
 // Tablets
@@ -311,5 +373,14 @@ h4 {
 
     to {
         opacity: 1;
+    }
+}
+
+@keyframes loading {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
     }
 }

@@ -179,6 +179,7 @@ export class NFTService {
             count,
             position,
             size,
+            price,
             image
         } = rawData;
 
@@ -189,6 +190,7 @@ export class NFTService {
             || !mosaicId
             || isNaN(count)
             || isNaN(size)
+            || isNaN(price)
             || !image
         ) {
             throw Error('Failed to create owned NFT Object');
@@ -202,6 +204,7 @@ export class NFTService {
             count,
             position,
             size,
+            price,
             image
         };
     };

@@ -11,7 +11,7 @@
 							</div>
 							<div class="text-crop">
 								<p class="hero">
-									Ukraine is attacked by the Russian army. People's ouses, schools and entire cities are being destroyed. The Russian army behaves ruthlessly, sparing neither children nor old people. You can help Ukraine by making a donation in XYM to this address ADDR. Tokens will be sold and transferred to the account of the Ukrainian army and humanitarian aid. You also have the opportunity to get NFT images, which you can find below. 
+									Ukraine is attacked by the Russian army. People's houses, schools and entire cities are being destroyed. The Russian army behaves ruthlessly, sparing neither children nor old people. You can help Ukraine by making a donation in XYM to this address: <a :href="explorerURL" target="_blank">{{ mainAccountAddress }}</a>. Tokens will be sold and transferred to the account of the Ukrainian army and humanitarian aid. You also have the opportunity to get NFT sticker, which you can find below. 
 								</p>
 							</div>
 						</div>
@@ -47,6 +47,7 @@
 import WidthLimiter from '../components/WidthLimiter.vue';
 import NFTCard from '../components/NFTCard.vue';
 import imgSymbol from '../assets/symbol.png';
+import * as config from '../config/config.json';
 
 export default {
 	name: 'Home',
@@ -62,6 +63,15 @@ export default {
 	},
 
 	computed: {
+		mainAccountAddress() {
+			return this.$store.getters['api/mainAccountAddress'];
+		},
+		explorerURL() {
+			const networkType = this.$store.getters['api/networkConfig'].networkType
+			const explorerURLs = config.EXPLORER_URL;
+
+			return explorerURLs[`${networkType}`] + `/accounts/${this.mainAccountAddress}`;
+		},
 		cachedNFTs() {
 			return this.$store.getters['nft/cachedNFTs'];
 		},
@@ -80,7 +90,11 @@ export default {
 	},
 
 	mounted () {
-		this.$store.dispatch('nft/loadListedNFTs');
+		this.$store.dispatch('nft/loadListedNFTs')
+			.catch(e => this.$bvToast.toast('Failed to load. ' + e.message, {
+				variant: 'danger',
+				solid: true,
+			}));
 	}
 };
 </script>
@@ -90,6 +104,10 @@ export default {
 	position: relative;
 	width: 100%;
 	height: 100%;
+
+	a {
+		color: var(--color-flag-blue);
+	}
 }
 
 .image-desktop {

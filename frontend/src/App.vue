@@ -11,9 +11,11 @@
 
 <script>
 import TheHeader from './components/TheHeader.vue';
+import LoadingSpinner from './components/LoadingSpinner.vue';
 export default {
     components: {
 		TheHeader,
+        LoadingSpinner
 	},
 
     computed: {
