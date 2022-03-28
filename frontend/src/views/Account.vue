@@ -11,12 +11,16 @@
 				</div>
 			</WidthLimiter>
 		</div>
-		<div v-if="ownedNFTs.length" class="content-center account-background">
+		<div v-if="confirmations || ownedNFTs.length" class="content-center account-background">
 			<WidthLimiter class="margin-b">
 				<div class="text-crop margin-b">
 					<h2 class="title">Owned NFTs</h2>
 				</div>
 				<div class="grid-gap nft-list">
+					<div v-if="confirmations" class="nft-list-item nft-order">
+						<div class="label">Order processing</div>
+						<progress :max="minConfirmations" :value="confirmations" />
+					</div>
 					<div v-for="(nft, nftIndex) in ownedNFTs" class="nft-list-item" :key="'block' + nftIndex">
 						<router-link :to="'/nft/' + nft.mosaicId">
 							<img 
@@ -67,10 +71,13 @@
 
 <script>
 import { verifyAddress, getNFTImageMapStyle } from '../utils';
+import { BlockchainService } from '../services/BlockchainService';
 import Button from '../components/Button.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
 import TextBox from '../components/TextBox.vue';
 import WidthLimiter from '../components/WidthLimiter.vue';
+import { PublicAccount } from 'symbol-sdk';
+import * as config from '../config/config.json';
 
 export default {
 	name: 'Details',
@@ -88,6 +95,7 @@ export default {
 			rawAddress: '',
 			ownedNFTs: [],
 			coordArray: [],
+			confirmations: 0
 		};
 	},
 
@@ -106,7 +114,8 @@ export default {
 		
 		if (verifyAddress(address)) {
 			this.rawAddress = address;
-			this.loadAccountNFTs();		
+			this.loadAccountNFTs();
+			this.listen()
 		}
 		else {
 			address && this.showInvalidAddressMessage();
@@ -191,7 +200,6 @@ export default {
 					}
 				});
 				this.$set(this, 'ownedNFTs', [...this.ownedNFTs]);
-				console.log(this.ownedNFTs)
 			}
 			catch(e) {
 				this.isLoading = false;
@@ -202,6 +210,50 @@ export default {
 			}
 
 			this.isLoading = false;
+		},
+		async listen() {
+			this.confirmations = 0;
+			this.minConfirmations = config.DEPOSIT_MIN_CONFIRMATIONS;
+
+			try {
+				const networkConfig = this.$store.getters['api/networkConfig'];
+				const accountInfo = await BlockchainService.getAccountInfo(networkConfig, this.rawAddress);
+				const publicKey = accountInfo.publicKey;
+				const mainAccount = PublicAccount.createFromPublicKey(config.MAIN_ACCOUNT_PUBLIC_KEY, networkConfig.networkType);
+				const userAccount = PublicAccount.createFromPublicKey(publicKey, networkConfig.networkType);
+
+				setInterval(async() => {
+					try {
+						const chainHeight = await BlockchainService.getChainHeight(networkConfig);
+						const transactions = await BlockchainService.getTransactions(networkConfig, userAccount, 'sent');
+
+						const tx = transactions
+							.reverse()
+							.find(tx => tx.recipientAddress.equals(mainAccount.address));
+
+						let currentConfiramtions;
+
+						if (tx) {
+							currentConfiramtions = chainHeight.compact() - tx.transactionInfo.height.compact() + 1;
+						}
+
+						if (this.confirmations && currentConfiramtions > this.minConfirmations + 4) {
+							this.confirmations = 0;
+							location.reload();
+						} 
+						else if (tx && currentConfiramtions < this.minConfirmations) {
+							this.confirmations = currentConfiramtions;
+						}
+					} 
+					catch(e) {
+						console.error('Fetching confirmations failed', e);
+					}
+				}, 4000);
+			}
+			catch (e) {
+				console.error('Fetching confirmations setup failed', e.message);
+				return;
+			}
 		},
 		showInvalidAddressMessage() {
 			this.$bvToast.toast('Incorrect Address', {
@@ -313,6 +365,32 @@ export default {
 
 		.hover {
 			display: unset;
+		}
+	}
+}
+
+.nft-order {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: var(--color-lightmode-text-learn-more);
+	text-transform: uppercase;
+
+	progress {
+		border-radius: 4px;
+		height: 10px;
+
+		&::-webkit-progress-bar {
+			border-width: 2px;
+			border-color: var(--color-lightmode-text-learn-more);
+			border-style: solid;
+			background-color: var(--color-lightmode-bg-gray);
+		}
+
+		&::-webkit-progress-value {
+			background-color: var(--color-lightmode-text-learn-more);
+			border-radius: 0;
 		}
 	}
 }

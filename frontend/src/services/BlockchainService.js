@@ -224,12 +224,16 @@ export class BlockchainService {
         return mosaicInfos;
     };
 
-    // static getMosaics = async (mosaicIds) => {
-    //     const mosaics = await http.createRepositoryFactory.createMosaicRepository()
-    //         .getMosaics(mosaicIds)
-    //         .toPromise();
-    //     const formattedMosaics = mosaics.map(mosaic => this.formatMosaicInfo(mosaic));
- 
-    //     return formattedMosaics;
-    // }
+    static getChainHeight = async (
+        networkConfig
+    ) => {
+        const repositoryFactoryHttp = new RepositoryFactoryHttp(networkConfig.nodeUrl, {
+            networkType: networkConfig.networkType,
+            generationHash: networkConfig.generationHash
+        });
+        const chainRepository = repositoryFactoryHttp.createChainRepository()
+        const chainInfo = await chainRepository.getChainInfo().toPromise();
+
+        return chainInfo.height;
+    };
 }
