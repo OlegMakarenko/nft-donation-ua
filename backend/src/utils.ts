@@ -63,5 +63,5 @@ export const getNativeMosaicAmount = (mosaics: Mosaic[], nativeMosaicId: MosaicI
 export const depositMosaicSpamFilter = (mosaics: Mosaic[], nativeMosaicId: MosaicId): boolean => {
     const nativeMosaicAmount = getNativeMosaicAmount(mosaics, nativeMosaicId);
 
-    return nativeMosaicAmount >= 10;
+    return nativeMosaicAmount >= 8;
 };

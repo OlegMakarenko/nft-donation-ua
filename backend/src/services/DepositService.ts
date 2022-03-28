@@ -48,7 +48,8 @@ export class DepositService {
             if (this.isRunning) {
                 await this.loadNetworkConfig();
                 const processedHashes = await this.getProcessedHashes();
-                const deposits = await this.getDeposits(processedHashes);
+                const chainHeight = await BlockchainService.getChainHeight(this.networkConfig);
+                const deposits = await this.getDeposits(processedHashes, chainHeight);
                 for (const deposit of deposits) {
                     await this.processDesposit(deposit);
                 }
@@ -85,8 +86,9 @@ export class DepositService {
     };
 
     // Fetch incoming transactions to main account. Filter them by minimum amount of 10 XYM. Fetch page by page until find tx with hash in the list of processedHashes.
-    private getDeposits = async (processedHashes: string[]): Promise<TransferTransaction[]> => {
+    private getDeposits = async (processedHashes: string[], chainHeight: UInt64): Promise<TransferTransaction[]> => {
         logger.info(`[getDeposits] Fetching deposits`);
+        const minConfirmation = config.appConfig.DEPOSIT_MIN_CONFIRMATIONS;
         const account = Account.createFromPrivateKey(config.symbol.MAIN_ACCOUNT_PRIVATE_KEY, this.networkConfig.networkType);
         const allDeposits = [];
 
@@ -102,17 +104,17 @@ export class DepositService {
                 break;
             }
 
-            // Filter transactions. Transaction should 10 XYM or more
-            const deposits = transactions.filter((tx) => depositMosaicSpamFilter(tx.mosaics, this.networkConfig.nativeMosaicId));
-
             // Filter transactions. Do not include transactions which hashes are already in the processedHashes list
-            const unprocessedDeposits = deposits.filter((tx) => !processedHashes.includes(tx.transactionInfo?.hash as string));
-            allDeposits.push(...unprocessedDeposits);
+            // Filter transactions. Transaction should be 10 XYM or more
+            // Filter transactions. Filter by minimum confirmations
+            const deposits = transactions.filter((tx) => {
+                return !!tx.transactionInfo
+                && !processedHashes.includes(tx.transactionInfo.hash as string)
+                && depositMosaicSpamFilter(tx.mosaics, this.networkConfig.nativeMosaicId)
+                && (chainHeight.compact() - tx.transactionInfo.height.compact()) >= minConfirmation 
+            });
 
-            // If we reach the page which has already processed deposits - stop the loop
-            if (unprocessedDeposits.length !== deposits.length) {
-                break;
-            }
+            allDeposits.push(...deposits);
 
             ++pageNumber;
         }

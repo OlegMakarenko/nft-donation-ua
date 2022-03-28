@@ -5,6 +5,7 @@ import { NetworkType } from 'symbol-sdk';
 interface AppConfig {
     PORT: number;
     DEPOSIT_LISTEN_INTERVAL: number;
+    DEPOSIT_MIN_CONFIRMATIONS: number;
     PARSER: string;
     PARSER_VERSION: number;
     MOSAIC_METADATA_KEY: string;
@@ -28,6 +29,7 @@ export interface Config {
 export const appConfig: AppConfig = {
     PORT: Number(process.env.PORT) || config.PORT,
     DEPOSIT_LISTEN_INTERVAL: Number(process.env.DEPOSIT_LISTEN_INTERVAL) || config.DEPOSIT_LISTEN_INTERVAL,
+    DEPOSIT_MIN_CONFIRMATIONS: Number(process.env.DEPOSIT_MIN_CONFIRMATIONS) || config.DEPOSIT_MIN_CONFIRMATIONS,
     PARSER: process.env.PARSER || config.PARSER,
     PARSER_VERSION: Number(process.env.PARSER_VERSION) || config.PARSER_VERSION,
     MOSAIC_METADATA_KEY: process.env.MOSAIC_METADATA_KEY || config.MOSAIC_METADATA_KEY,
@@ -51,6 +53,9 @@ export const verifyConfig = (cfg: Config): boolean => {
     }
     if (isNaN(cfg.appConfig.DEPOSIT_LISTEN_INTERVAL) || cfg.appConfig.DEPOSIT_LISTEN_INTERVAL <= 0) {
         throw Error(errorMessage + 'Invalid "DEPOSIT_LISTEN_INTERVAL"');
+    }
+    if (isNaN(cfg.appConfig.DEPOSIT_MIN_CONFIRMATIONS) || cfg.appConfig.DEPOSIT_MIN_CONFIRMATIONS <= 0) {
+        throw Error(errorMessage + 'Invalid "DEPOSIT_MIN_CONFIRMATIONS"');
     }
     if (cfg.appConfig.PARSER?.length === 0) {
         throw Error(errorMessage + 'Invalid "PARSER"');

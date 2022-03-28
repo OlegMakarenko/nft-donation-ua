@@ -143,6 +143,13 @@ export class BlockchainService {
             type: [TransactionType.TRANSFER],
             group: TransactionGroup.Confirmed,
         };
+        const searchCriteriaUnconfirmed: SearchCriteria = {
+            pageNumber,
+            pageSize: 100,
+            order: Order.Desc,
+            type: [TransactionType.TRANSFER],
+            group: TransactionGroup.Unconfirmed,
+        };
 
         switch (directionFilter) {
             case 'sent':
@@ -161,7 +168,9 @@ export class BlockchainService {
             if (!unconfirmed || pageNumber !== 1) {
                 return transactionsPage.data as TransferTransaction[];
             }
-            const transactionsUnconfirmedPage = await transactionHttp.search(searchCriteria).toPromise();
+            const transactionsUnconfirmedPage = await transactionHttp
+                .search(searchCriteriaUnconfirmed)
+                .toPromise();
 
             return [...transactionsUnconfirmedPage.data, ...transactionsPage.data] as TransferTransaction[];
         } catch (e) {
@@ -238,5 +247,18 @@ export class BlockchainService {
         }
 
         return mosaic.amount;
+    };
+
+    public static getChainHeight = async (
+        networkConfig: NetworkConfig
+    ): Promise<UInt64> => {
+        const repositoryFactoryHttp = new RepositoryFactoryHttp(networkConfig.nodeUrl, {
+            networkType: networkConfig.networkType,
+            generationHash: networkConfig.generationHash
+        });
+        const chainRepository = repositoryFactoryHttp.createChainRepository()
+        const chainInfo = await chainRepository.getChainInfo().toPromise();
+
+        return chainInfo.height;
     };
 }
