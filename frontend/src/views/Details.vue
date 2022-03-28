@@ -43,9 +43,11 @@
 					</p>
 				</div>
 
-				<Button v-if="!isUserWarned" @click="() => isUserWarned = true">
-					I read the caution above and understand it
-				</Button>
+				<div class="fullweight content-center">
+					<Button v-if="!isUserWarned" @click="() => isUserWarned = true">
+						I read the caution above and understand it
+					</Button>
+				</div>
 
 				<div v-if="isUserWarned">
 					<div class="label item-title">Select a number of NFTs:</div>

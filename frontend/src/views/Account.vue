@@ -4,9 +4,9 @@
 		<div class="content-center margin-b">
 			<WidthLimiter>
 				<div class="row-address-input grid-gap-sm">
-					<TextBox v-model="rawAddress" placeholder="Please enter your address to see owned NFTs" @enter="loadAccountNFTs" />
+					<TextBox v-model="rawAddress" placeholder="Please enter your address to see owned NFTs" @enter="onButtonClick" />
 					<Button @click="onButtonClick">
-						View
+						Show
 					</Button>
 				</div>
 			</WidthLimiter>
@@ -25,9 +25,12 @@
 							/>
 						</router-link>
 						<div class="nft-item-count padding">
-							<h3 class="title-purple">
+							<h3 class="title-purple normal">
 								x{{ nft.count }}
 							</h3>
+							<h4 class="title-purple hover">
+								Count: {{ nft.count }}
+							</h4>
 						</div>
 						<div class="name-container">
 							<h3 class="title-yellow inline">{{nft.name }}</h3>
@@ -93,10 +96,9 @@ export default {
 			let total = 0;
 
 			this.ownedNFTs.forEach(nft => total += nft.count * nft.price);
-			console.log(this.ownedNFTs)
 
 			return total;
-		}
+		},
 	},
 
 	mounted() {
@@ -148,7 +150,11 @@ export default {
 		},
 		onButtonClick() {
 			if (verifyAddress(this.rawAddress)) {
-				this.$router.push('/account/' + this.rawAddress);
+				const sameLocation = this.rawAddress === this.$route.params.address;
+				sameLocation 
+					? location.reload()
+				 	: this.$router.push('/account/' + this.rawAddress);
+
 			}
 			else {
 				this.showInvalidAddressMessage();
@@ -286,11 +292,27 @@ export default {
 		transition: inherit;
 	}
 
+	.normal {
+		display: unset;
+	}
+
+	.hover {
+		display: none;
+	}
+
 	&:hover {
 		background: var(--color-lightmode-bg-footer);
 
 		.name-container {
 			max-height: 20%;
+		}
+
+		.normal {
+			display: none;
+		}
+
+		.hover {
+			display: unset;
 		}
 	}
 }

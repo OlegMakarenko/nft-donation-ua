@@ -20,7 +20,6 @@ export default {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 100%;
     min-width: 128px;
     padding: 12px 32px 10px;
     color: var(--color-lightmode-button-default-text);

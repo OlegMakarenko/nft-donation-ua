@@ -35,7 +35,7 @@ export const copyToClipboard = (text) => {
 
 export const verifyAddress = (rawAaddres) => {
     try {
-        return Address.isValidRawAddress(rawAaddres);
+        return Address.createFromRawAddress(rawAaddres) && true;
     }
     catch {
         return false;

@@ -11,7 +11,7 @@
 							</div>
 							<div class="text-crop">
 								<p class="hero">
-									Ukraine holds the defense against russian occupying army attacks. The russian army, led by the cynical lies of their leader, behaves ruthlessly, sparing neither children nor the elderly. Entire cities with people's houses, factories and schools are being destroyed. You can stand with us and help Ukraine by making a donation in XYM to this address: <a :href="explorerURL" target="_blank">{{ mainAccountAddress }}</a>. Tokens will be sold and transferred to the account of the Ukrainian army and humanitarian aid funds. You also have the opportunity to get an NFT sticker, which you can find below.
+									Ukraine holds the defense against russian occupying army attacks. The russian army, led by the cynical lies of their leader, behaves ruthlessly, sparing neither children nor the elderly. Entire cities with people's houses, factories and schools are being destroyed. You can stand with us and help Ukraine by making XYM donation to this address: <a :href="explorerURL" target="_blank">{{ mainAccountAddress }}</a>. Tokens will be sold and transferred to the account of the Ukrainian army and humanitarian aid funds. You also have the opportunity to get an NFT sticker, which you can find below.
 								</p>
 							</div>
 						</div>

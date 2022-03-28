@@ -120,6 +120,16 @@ h4 {
     &.title {
         color: var(--color-flag-yellow);
     }
+
+    &.title-purple {
+        background: var(--gradient-darkmode-gradient-purple-title);
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    &.title-yellow {
+        color: var(--color-flag-yellow);
+    }
 }
 
 .subtitle {
