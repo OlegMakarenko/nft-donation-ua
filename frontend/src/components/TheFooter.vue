@@ -63,6 +63,12 @@ export default {
     filter: saturate(0.3);
 }
 
+@media #{$screen-tablet-lg} {
+    .social {
+        height: 45px;
+    }
+}
+
 @media #{$screen-tablet-sm}, #{$screen-mobile} {
     .social {
         height: 32px;
