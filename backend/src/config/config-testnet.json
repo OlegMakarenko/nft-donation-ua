@@ -1,0 +1,28 @@
+{
+	"PORT": 1996,
+	"DEPOSIT_LISTEN_INTERVAL": 120000,
+	"DEPOSIT_MIN_CONFIRMATIONS": 10,
+	"PARSER": "ZSU",
+	"PARSER_VERSION": 1,
+	"MOSAIC_METADATA_KEY": "ZSUNFT",
+	"MAIN_ACCOUNT_PRIVATE_KEY": "",
+	"NODES": [
+		"https://201-joey-dual.symboltest.net:3001",
+		"http://13.231.221.251:3000",
+		"http://20.48.92.124:3000",
+		"http://76.104.40.224:3000",
+		"https://yamatanoorochi.sfn.tools:3001",
+		"http://133.242.208.30:3000",
+		"https://stg.harvesting-sweet-potatoes.club:3001",
+		"https://iroha-symbolnode-2.com:3001",
+		"https://symbol-test.next-web-technology.com:3001",
+		"https://sym-test-02.opening-line.jp:3001",
+		"https://sym-test-03.opening-line.jp:3001",
+		"https://sym-test-04.opening-line.jp:3001"
+	],
+	"NETWORK_TYPE": 152,
+	"NATIVE_MOSAIC_ID": "E74B99BA41F4AFEE",
+	"EPOCH_ADJUSTMENT": 1637848847,
+	"GENERATION_HASH": "7FCCD304802016BEBBCD342A332F91FF1F3BB5E902988B352697BE245F48E836",
+	"MAX_FEE": 500000
+}

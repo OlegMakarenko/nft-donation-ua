@@ -1,28 +1,35 @@
 {
-    "MAIN_ACCOUNT_PUBLIC_KEY": "2F59E607C4B6763DB907CC88D3A82CCEB4610EE300C34AB8DF36C13DC1AEB52A",
+    "MAIN_ACCOUNT_PUBLIC_KEY": "31EA6AE25DC6D3FA4EE77C0225E29E3E88870E023A57076931FA1C7F4FBC4409",
 	"DEPOSIT_MIN_CONFIRMATIONS": 10,
     "PARSER": "ZSU",
 	"PARSER_VERSION": 1,
 	"MOSAIC_METADATA_KEY": "ZSUNFT",
     "NODES": [
-		"https://201-joey-dual.symboltest.net:3001",
-		"http://13.231.221.251:3000",
-		"http://20.48.92.124:3000",
-		"http://76.104.40.224:3000",
-		"https://yamatanoorochi.sfn.tools:3001",
-		"http://133.242.208.30:3000",
-		"https://stg.harvesting-sweet-potatoes.club:3001",
-		"https://iroha-symbolnode-2.com:3001",
-		"https://symbol-test.next-web-technology.com:3001",
-		"https://sym-test-02.opening-line.jp:3001",
-		"https://sym-test-03.opening-line.jp:3001",
-		"https://sym-test-04.opening-line.jp:3001"
+		"https://xym244.allnodes.me:3001",
+		"https://ik1-432-48199.vs.sakura.ne.jp:3001",
+		"https://0-0-xym.cubkab-crypto.tokyo:3001",
+		"https://0-0-axym.cubkab-crypto.tokyo:3001",
+		"https://symbol-harvesting.tokyo:3001",
+		"https://0-0-0-sevengods.surgestar.com:3001",
+		"https://0-0-0-ebisu.surgestar.com:3001",
+		"https://symbol01.harvestasya.com:3001",
+		"https://02.symsym.info:3001",
+		"https://xxx-welcome-to-a-powerful-node.com:3001",
+		"https://xym103.allnodes.me:3001",
+		"https://xym108.allnodes.me:3001",
+		"https://xym109.allnodes.me:3001",
+		"https://node.shin.gg:3001",
+		"https://apple.xymnodes.com:3001",
+		"https://symbol.lucky-gnome.com:3001",
+		"https://0-0-8.symbol-gym.love:3001",
+		"https://0-0-0-0-0-0-0-0-0.king-of-harvesters.com:3001",
+		"https://symbol-harvesting.rockbear.io:3001"
 	],
 	"EXPLORER_URL": {
 		"104": "https://symbol.fyi",
 		"152": "https://testnet.symbol.fyi"
 	},
-    "NETWORK_TYPE": 152,
-    "EPOCH_ADJUSTMENT": 1637848847,
-	"GENERATION_HASH": "7FCCD304802016BEBBCD342A332F91FF1F3BB5E902988B352697BE245F48E836"
+    "NETWORK_TYPE": 104,
+    "EPOCH_ADJUSTMENT": 1615853185,
+	"GENERATION_HASH": "57F7DA205008026C776CB6AED843393F04CD458E0AA2D9F1D5F31A402072B2D6"
 }

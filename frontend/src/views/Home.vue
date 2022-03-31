@@ -156,7 +156,7 @@ export default {
 .image-rockets {
 	z-index: 2;
 	position: relative;
-	margin-top: 400px;
+	margin-top: 550px;
 	margin-bottom: -10%;
 	width: 100%;
 }
@@ -194,6 +194,10 @@ export default {
 		height: 200px !important;
 	}
 
+	.image-rockets {
+		margin-top: 420px;
+	}
+
 	.nft-content {
 		.nft-list {
 			grid-template-columns: 1fr 1fr 1fr;
@@ -202,6 +206,10 @@ export default {
 }
 
 @media #{$screen-tablet-sm}, #{$screen-mobile} {
+	.image-rockets {
+		margin-top: 400px;
+	}
+
 	.image-desktop {
 		display: none;
 	}

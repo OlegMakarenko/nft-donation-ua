@@ -3,147 +3,147 @@
         "id": 1000,
         "name": "Flower",
         "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "1804899683FF377D",
+        "mosaicId": "52F96AC0043B02D8",
         "price": 8
     },
     {
         "id": 1001,
-        "name": "Ukrainian Flag",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "49DB04D43E714646",
+        "name": "The Flag of Ukraine",
+        "description": "",
+        "mosaicId": "0C694031CFC22C84",
         "price": 10
     },
     {
         "id": 1002,
         "name": "Tryzub",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "1703495A908A971F",
+        "description": "",
+        "mosaicId": "03D6EE58174D16DD",
         "price": 10
     },
     {
         "id": 1003,
-        "name": "Medicals",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "2E100F7517DE0780",
+        "name": "First Aid Kit",
+        "description": "",
+        "mosaicId": "054B071E97323D54",
         "price": 50
     },
     {
         "id": 1004,
-        "name": "Nutrition",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "206B3C1FB4BFE575",
+        "name": "Nutrition Pack",
+        "description": "",
+        "mosaicId": "2B58942A0A9D3908",
         "price": 50
     },
     {
         "id": 1005,
-        "name": "Supply",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "5504FD4DFC894050",
+        "name": "Humanitarian Supply",
+        "description": "",
+        "mosaicId": "7FE10DF86F32776F",
         "price": 50
     },
     {
         "id": 1006,
         "name": "Ambulance",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "60A306702782EC45",
+        "description": "",
+        "mosaicId": "1A08F9B88AE4CCF9",
         "price": 50
     },
     {
         "id": 1007,
         "name": "Mriya",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "7941B45D368CC650",
+        "description": "",
+        "mosaicId": "03CB7A99E6F6F65A",
         "price": 100
     },
     {
         "id": 1008,
-        "name": "Petrolium",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "388E07A1E8F0C10F",
+        "name": "Fuel",
+        "description": "",
+        "mosaicId": "2F0BAAAD886013B2",
         "price": 100
     },
     {
         "id": 1009,
         "name": "Helmet",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "6F22EEA24BEF549B",
+        "description": "",
+        "mosaicId": "7D8FF6C570E909C3",
         "price": 100
     },
     {
         "id": 1010,
         "name": "Body Armour",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "4E9CBC596E61D12E",
+        "description": "",
+        "mosaicId": "237ACBD2073D7C22",
         "price": 100
     },
     {
         "id": 1011,
-        "name": "Molotov",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "0730B8FB09E99DA5",
+        "name": "Ukrainian Smoothie",
+        "description": "",
+        "mosaicId": "29498519D19B27CF",
         "price": 100
     },
     {
         "id": 1012,
         "name": "Ukrainian Tank",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "21A7A2C1263BE680",
+        "description": "",
+        "mosaicId": "03E85F9F15A92D27",
         "price": 200
     },
     {
         "id": 1013,
         "name": "Javelin",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "086C3C796D3F3843",
+        "description": "",
+        "mosaicId": "62B4F899B6DADDFF",
         "price": 200
     },
     {
         "id": 1014,
         "name": "Bayraktar",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "75E00B2F9BDAA7EE",
+        "description": "",
+        "mosaicId": "6649A6F82740775E",
         "price": 500
     },
     {
         "id": 1015,
-        "name": "Mig 29",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "546864545951BA2E",
+        "name": "MIG 29",
+        "description": "",
+        "mosaicId": "1FA7CAD8017C3045",
         "price": 500
     },
     {
         "id": 1016,
-        "name": "Captured Tank",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "27E1DCCA622899B8",
+        "name": "Ukrainian Farmers",
+        "description": "",
+        "mosaicId": "5FFB7126DD87CC5B",
         "price": 5000
     },
     {
         "id": 1017,
         "name": "Russian Warship",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "2166F1FDA72EDBB6",
+        "description": "",
+        "mosaicId": "07039874D46F8B44",
         "price": 7000
     },
     {
         "id": 1018,
-        "name": "Zelenskyi",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "30B483E8A8BFB1BC",
+        "name": "Zelensky",
+        "description": "",
+        "mosaicId": "3391DD8105AD0C82",
         "price": 20000
     },
     {
         "id": 1019,
-        "name": "russian-nazzies",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "76FB8E051DD1A32D",
+        "name": "Kick the Nazis",
+        "description": "",
+        "mosaicId": "56C97E544EA9C149",
         "price": 20000
     },
     {
         "id": 1020,
         "name": "Huilo",
-        "description": "Lorem ipsum ipsum lorem",
-        "mosaicId": "39381BFFAABA08CD",
+        "description": "",
+        "mosaicId": "74599424DE012A19",
         "price": 35000
     }
 ]

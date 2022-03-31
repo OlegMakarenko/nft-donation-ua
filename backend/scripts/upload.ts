@@ -19,9 +19,9 @@ import {
 } from 'symbol-sdk';
 
 const config = {
-    nodeUrl: "https://201-joey-dual.symboltest.net:3001",
-    websocketUrl: 'wss://sym-test-01.opening-line.jp:3001/ws',
-    networkType: NetworkType.TEST_NET,
+    nodeUrl: "https://xym244.allnodes.me:3001",
+    websocketUrl: 'wss://xym244.allnodes.me:3001/ws',
+    networkType: NetworkType.MAIN_NET,
     privateKey: '',
     parser: 'ZSU',
     version: 1,
@@ -41,26 +41,26 @@ interface NFT {
 };
 
 const NFTList = [
-    {id: 1000, fileName: 'flower', name: 'Flower',                          price: 8, supply: 200, mosaic: getMosaic()},
-    {id: 1001, fileName: 'ukrainian-national-flag', name: 'Ukrainian Flag', price: 10, supply: 500, mosaic: getMosaic()},
+    {id: 1000, fileName: 'flower', name: 'Ukrainian Sunflower',                          price: 8, supply: 200, mosaic: getMosaic()},
+    {id: 1001, fileName: 'ukrainian-national-flag', name: 'The Flag of Ukraine', price: 10, supply: 500, mosaic: getMosaic()},
     {id: 1002, fileName: 'ukrainian-national-symbol', name: 'Tryzub',       price: 10, supply: 500, mosaic: getMosaic()},
-    {id: 1003, fileName: 'medicals', name: 'Medicals',                      price: 50, supply: 500, mosaic: getMosaic()},
-    {id: 1004, fileName: 'nutrition', name: 'Nutrition',                    price: 50, supply: 500, mosaic: getMosaic()},
-    {id: 1005, fileName: 'supply', name: 'Supply',                          price: 50, supply: 500, mosaic: getMosaic()},
+    {id: 1003, fileName: 'medicals', name: 'First Aid Kit',                      price: 50, supply: 500, mosaic: getMosaic()},
+    {id: 1004, fileName: 'nutrition', name: 'Nutrition Pack',                    price: 50, supply: 500, mosaic: getMosaic()},
+    {id: 1005, fileName: 'supply', name: 'Humanitarian Supply',                          price: 50, supply: 500, mosaic: getMosaic()},
     {id: 1006, fileName: 'ambulance', name: 'Ambulance',                    price: 50, supply: 500, mosaic: getMosaic()},
     {id: 1007, fileName: 'mriya', name: 'Mriya',                            price: 100, supply: 500, mosaic: getMosaic()},
-    {id: 1008, fileName: 'petrolium', name: 'Petrolium',                    price: 100, supply: 500, mosaic: getMosaic()},
+    {id: 1008, fileName: 'petrolium', name: 'Fuel',                    price: 100, supply: 500, mosaic: getMosaic()},
     {id: 1009, fileName: 'helmet', name: 'Helmet',                          price: 100, supply: 500, mosaic: getMosaic()},
     {id: 1010, fileName: 'body-armour', name: 'Body Armour',                price: 100, supply: 500, mosaic: getMosaic()},
-    {id: 1011, fileName: 'molotov', name: 'Molotov',                        price: 100, supply: 500, mosaic: getMosaic()},
+    {id: 1011, fileName: 'molotov', name: 'Ukrainian Smoothie',                        price: 100, supply: 500, mosaic: getMosaic()},
     {id: 1012, fileName: 'tank', name: 'Ukrainian Tank',                    price: 200, supply: 100, mosaic: getMosaic()},
     {id: 1013, fileName: 'javelin', name: 'Javelin',                        price: 200, supply: 100, mosaic: getMosaic()},
     {id: 1014, fileName: 'bayraktar', name: 'Bayraktar',                    price: 500, supply: 50, mosaic: getMosaic()},
-    {id: 1015, fileName: 'mig-29', name: 'Mig 29',                          price: 500, supply: 50, mosaic: getMosaic()},
-    {id: 1016, fileName: 'tank-captured-2', name: 'Captured Tank',          price: 5000, supply: 20, mosaic: getMosaic()},
-    {id: 1017, fileName: 'warship', name: 'Russian Warship',                price: 7000, supply: 5, mosaic: getMosaic()},
-    {id: 1018, fileName: 'zelenskyi', name: 'Zelenskyi',                    price: 20000, supply: 5, mosaic: getMosaic()},
-    {id: 1019, fileName: 'russian-nazzies', name: 'russian-nazzies',        price: 20000, supply: 5, mosaic: getMosaic()},
+    {id: 1015, fileName: 'mig-29', name: 'MIG 29',                          price: 500, supply: 50, mosaic: getMosaic()},
+    {id: 1016, fileName: 'tank-captured-2', name: 'Ukrainian Farmers',          price: 5000, supply: 30, mosaic: getMosaic()},
+    {id: 1017, fileName: 'warship', name: 'Russian Warship',                price: 7000, supply: 10, mosaic: getMosaic()},
+    {id: 1018, fileName: 'zelenskyi', name: 'Zelensky',                    price: 20000, supply: 5, mosaic: getMosaic()},
+    {id: 1019, fileName: 'russian-nazzies', name: 'Kick the Nazis',        price: 20000, supply: 5, mosaic: getMosaic()},
     {id: 1020, fileName: 'huilo', name: 'Huilo',                            price: 35000, supply: 1, mosaic: getMosaic()},
 ];
 
@@ -202,9 +202,9 @@ async function defineMosaic(nft: NFT, rootTransactionHash: string) {
     }));
 }
 
-async function main() {
+async function main(nftList: typeof NFTList) {
     console.log('[Main] Task started');
-    const nftList = NFTList;
+    //const nftList = NFTList;
 
     for (const nft of nftList) {
         const result = await uploadFile(nft);
@@ -228,4 +228,4 @@ async function main() {
     }))));
 }
 
-main();
+main(NFTList);

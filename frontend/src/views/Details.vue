@@ -55,12 +55,13 @@
 						class="margin-b"
 						:value="requestedCount"
 						:maxValue="availableCount" 
+						:key="requestedCount"
 						@change="_ => requestedCount = _"
 					/>
 
 					<div class="margin-b text-crop">
 						<p>
-						To receive NFT to your account you should send transfer of <code>{{ amount }} XYM</code> to this address: <code>{{ address }}</code> with following message: <code>{{ id }}</code>. Please DO  NOT encrypt the message, otherwise transfer will not be processed. It may take up to 10 minutes to receive the NFT.
+						To receive NFT to your account you should send transfer of <code :key="amount">{{ amount }} XYM</code> to this address: <code>{{ address }}</code> with following message: <code>{{ id }}</code>. Please DO  NOT encrypt the message, otherwise transfer will not be processed. It may take up to 10 minutes to receive the NFT.
 						</p>
 						<p>Fill the transfer transaction with the data below or scan the QR code with the wallet's scanner.</p>
 					</div>
@@ -83,7 +84,7 @@
 							</p>
 							<p>
 								<div>3. Amount:</div>
-								<div class="copy-box bg-copy-icon pointer" @click="copy(amount)">{{ amount }}</div>
+								<div class="copy-box bg-copy-icon pointer" :key="amount" @click="copy(amount)">{{ amount }}</div>
 							</p>
 			
 							<div>4. Message:</div>
