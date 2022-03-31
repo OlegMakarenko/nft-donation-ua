@@ -1,146 +1,148 @@
 <template>
 	<div class="details">
-		<WidthLimiter v-if="!isError">
-			<div class="section-nft">
-				<div class="card nft-image-container" :class="{'bg-loading': isLoading || isCacheLoading}">
-					<img :src="image" />
+		<div class="content-center">
+			<WidthLimiter v-if="!isError">
+				<div class="section-nft margin-b">
+					<div class="card nft-image-container" :class="{'bg-loading': isLoading || isCacheLoading}">
+						<img :src="image" />
+					</div>
+					<div class="padding card nft-details" :class="{'bg-loading': isLoading || isCacheLoading}">
+						<div class="margin-b-sm text-crop title-nft-name">
+							<h2 class="title-yellow inline">{{ name }}</h2>
+						</div>
+						
+						<div class="margin-b text-crop">
+							<span class="item-value">#{{ id }}</span> <a class="mosaic-id" :href="mosaicExplorerURL"  target="_blank">Mosaic: {{ mosaicId }}</a>
+						</div>
+					
+						<div class="row-purchase">
+							<div>
+								<div class="label item-title">Price:</div>
+								<div class="col-price-value">{{ price }} XYM</div>
+							</div>
+							<div>
+								<div class="label item-title">Available:</div>
+								<div class="">
+									<span class="col-availability-value">{{ availableCountText }}</span> / 
+									<span>{{ totalCount }}</span>
+								</div>
+							</div>
+						</div>
+						<hr class="separastor" />
+						<div>{{ description }}</div>
+					</div>
 				</div>
-				<div class="padding card nft-details" :class="{'bg-loading': isLoading || isCacheLoading}">
-					<div class="margin-b-sm text-crop title-nft-name">
-						<h2 class="title-yellow inline">{{ name }}</h2>
+
+				<div v-if="availableCount > 0" class="padding card section-payment margin-b">
+					<div class="margin-b text-crop">
+						<h3>How to get NFT</h3>
 					</div>
 					
-					<div class="margin-b text-crop">
-						<span class="item-value">#{{ id }}</span> <a class="mosaic-id" :href="mosaicExplorerURL"  target="_blank">Mosaic: {{ mosaicId }}</a>
+					<div v-if="!isUserWarned" class="margin-b text-crop">
+						<p>
+						Caution! Aware that this is a donation service, and NFTs are not refundable. Please note that NFT will not be sent to your account if the transferred XYM is insufficient, the message contains the wrong number or NFT is out of stock. Payments can not be refunded.
+						</p>
 					</div>
-				
-					<div class="row-purchase">
-						<div>
-							<div class="label item-title">Price:</div>
-							<div class="col-price-value">{{ price }} XYM</div>
+
+					<div class="fullweight content-center">
+						<Button v-if="!isUserWarned" @click="() => isUserWarned = true">
+							I've read the caution above and understand it
+						</Button>
+					</div>
+
+					<div v-if="isUserWarned">
+						<div class="label item-title">Select a number of NFTs:</div>
+						<CountSelector
+							class="margin-b"
+							:value="requestedCount"
+							:maxValue="availableCount" 
+							:key="requestedCount"
+							@change="_ => requestedCount = _"
+						/>
+
+						<div class="margin-b text-crop">
+							<p>
+							To receive NFT to your account you should send transfer of <code :key="amount">{{ amount }} XYM</code> to this address: <code>{{ address }}</code> with following message: <code>{{ id }}</code>. Please DO  NOT encrypt the message, otherwise transfer will not be processed. It may take up to 10 minutes to receive the NFT.
+							</p>
+							<p>Fill the transfer transaction with the data below or scan the QR code with the wallet's scanner.</p>
 						</div>
-						<div>
-							<div class="label item-title">Available:</div>
-							<div class="">
-								<span class="col-availability-value">{{ availableCountText }}</span> / 
-								<span>{{ totalCount }}</span>
+
+						<hr class="separastor" />
+						
+						<div class="text-crop margin-b-sm">
+							<h4>Transaction</h4>
+						</div>
+
+						<div class="grid-gap-sm margin-b send-form">
+							<div class="text-crop text-red fullwidth">
+								<p>
+									<div>1. To / Recipient Address:</div> 
+									<div class="copy-box bg-copy-icon pointer" @click="copy(address)">{{ address }}</div>
+								</p>
+								<p>
+									<div>2. Mosaic:</div>
+									<div class="copy-box">symbol.xym</div>
+								</p>
+								<p>
+									<div>3. Amount:</div>
+									<div class="copy-box bg-copy-icon pointer" :key="amount" @click="copy(amount)">{{ amount }}</div>
+								</p>
+				
+								<div>4. Message:</div>
+								<div class="copy-box bg-copy-icon pointer" @click="copy(id)">{{ id }}</div>
+							
+							</div>
+							<p class="qr-wrapper">
+								<QRCode :address="address" :amount="amount" :message="id" />
+							</p>
+						</div>
+
+						<hr class="separastor" />
+
+						<div class="text-crop margin-b">
+							<h4>Mobile Wallet</h4>
+						</div>
+						<div class="margin-b text-crop">
+							<div class="guide-mobile content-center">
+								<img src="../assets/mobile-wallet.png" />
+							</div>
+						</div>
+
+						<hr class="separastor" />
+
+						<div class="text-crop margin-b">
+							<h4>Desktop Wallet</h4>
+						</div>
+						<div class="margin-b text-crop">
+							<div class="guide-mobile content-center">
+								<img src="../assets/desktop-wallet.png" />
 							</div>
 						</div>
 					</div>
-					<hr class="separastor" />
-					<div>{{ description }}</div>
-				</div>
-			</div>
-
-			<div v-if="availableCount > 0" class="padding card section-payment margin-b">
-				<div class="margin-b text-crop">
-					<h3>How to get NFT</h3>
-				</div>
-				
-				<div v-if="!isUserWarned" class="margin-b text-crop">
-					<p>
-					Caution! This is donation service and NFTs are not refundable. Please note that NFT will not be send to your account if transferred XYM ammount is less then it's price, message contains wrong number or NFT is out of stock. Transferred funds cannot be returned back to your account.
-					</p>
 				</div>
 
-				<div class="fullweight content-center">
-					<Button v-if="!isUserWarned" @click="() => isUserWarned = true">
-						I read the caution above and understand it
-					</Button>
-				</div>
-
-				<div v-if="isUserWarned">
-					<div class="label item-title">Select a number of NFTs:</div>
-					<CountSelector
-						class="margin-b"
-						:value="requestedCount"
-						:maxValue="availableCount" 
-						:key="requestedCount"
-						@change="_ => requestedCount = _"
-					/>
-
+				<div v-else-if="!isLoading" class="padding card section-payment margin-b">
 					<div class="margin-b text-crop">
-						<p>
-						To receive NFT to your account you should send transfer of <code :key="amount">{{ amount }} XYM</code> to this address: <code>{{ address }}</code> with following message: <code>{{ id }}</code>. Please DO  NOT encrypt the message, otherwise transfer will not be processed. It may take up to 10 minutes to receive the NFT.
-						</p>
-						<p>Fill the transfer transaction with the data below or scan the QR code with the wallet's scanner.</p>
+						<h3>How to get NFT</h3>
 					</div>
-
-					<hr class="separastor" />
-					
-					<div class="text-crop margin-b-sm">
-						<h4>Transaction</h4>
-					</div>
-
-					<div class="grid-gap-sm margin-b send-form">
-						<div class="text-crop text-red fullwidth">
-							<p>
-								<div>1. To / Recipient Address:</div> 
-								<div class="copy-box bg-copy-icon pointer" @click="copy(address)">{{ address }}</div>
-							</p>
-							<p>
-								<div>2. Mosaic:</div>
-								<div class="copy-box">symbol.xym</div>
-							</p>
-							<p>
-								<div>3. Amount:</div>
-								<div class="copy-box bg-copy-icon pointer" :key="amount" @click="copy(amount)">{{ amount }}</div>
-							</p>
-			
-							<div>4. Message:</div>
-							<div class="copy-box bg-copy-icon pointer" @click="copy(id)">{{ id }}</div>
-						
-						</div>
-						<p class="qr-wrapper">
-							<QRCode :address="address" :amount="amount" :message="id" />
-						</p>
-					</div>
-
-					<hr class="separastor" />
-
-					<div class="text-crop margin-b">
-						<h4>Mobile Wallet</h4>
-					</div>
-					<div class="margin-b text-crop">
-						<div class="guide-mobile content-center">
-							<img src="../assets/mobile-wallet.png" />
-						</div>
-					</div>
-
-					<hr class="separastor" />
-
-					<div class="text-crop margin-b">
-						<h4>Desktop Wallet</h4>
-					</div>
-					<div class="margin-b text-crop">
-						<div class="guide-mobile content-center">
-							<img src="../assets/desktop-wallet.png" />
-						</div>
+					<div class="content-center">
+						<h4 class="inline">This NFT is out of stock</h4>
 					</div>
 				</div>
-			</div>
-
-			<div v-else-if="!isLoading" class="padding card section-payment margin-b">
-				<div class="margin-b text-crop">
-					<h3>How to get NFT</h3>
-				</div>
+			</WidthLimiter>
+			<WidthLimiter v-else-if="isError">
 				<div class="content-center">
-					<h4 class="inline">This NFT is out of stock</h4>
+					<h3 class="text-center"> {{ errorMessage }} </h3>
 				</div>
-			</div>
-
-			<div style="height: 1px;" />
-		</WidthLimiter>
-		<WidthLimiter v-else-if="isError">
-			<div class="content-center">
-				<h3 class="text-center"> {{ errorMessage }} </h3>
-			</div>
-		</WidthLimiter>
+			</WidthLimiter>
+		</div>
+		<TheFooter />
 		<LoadingSpinner v-if="isCacheLoading || isLoading" />
 	</div>
 </template>
 
 <script>
+import TheFooter from '../components/TheFooter.vue';
 import Button from '../components/Button.vue';
 import CountSelector from '../components/CountSelector.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
@@ -153,6 +155,7 @@ export default {
 	name: 'Details',
 
 	components: {
+		TheFooter,
 		Button,
 		CountSelector,
 		LoadingSpinner,
@@ -278,7 +281,8 @@ export default {
 	width: 100%;
 	height: 100%;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: space-between;
 	color: var( --color-darkmode-text-footer);
 }
 
@@ -356,8 +360,6 @@ code {
 }
 
 .section-payment {
-	margin-top: $margin-base;
-
 	.send-form {
 		display: grid;
 		grid-template-columns: auto 282px;
@@ -427,10 +429,6 @@ code {
 		grid-gap: $margin-mobile-base;
 	}
 
-	.section-payment {
-		margin-top: $margin-mobile-base;
-	}
-
 	.section-terms {
 		margin-top: $margin-mobile-base;
 	}
@@ -474,8 +472,6 @@ code {
 	}
 
 	.section-payment {
-		margin-top: $margin-mobile-base;
-
 		.send-form {
 			width: 100%;
 			display: flex;

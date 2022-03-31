@@ -39,11 +39,13 @@
 					</div>
 				</WidthLimiter>
 			</div>
+			<TheFooter />
 		</div>
 	</div>
 </template>
 
 <script>
+import TheFooter from '../components/TheFooter.vue';
 import WidthLimiter from '../components/WidthLimiter.vue';
 import NFTCard from '../components/NFTCard.vue';
 import imgSymbol from '../assets/symbol.png';
@@ -52,6 +54,7 @@ import * as config from '../config/config.json';
 export default {
 	name: 'Home',
 	components: {
+		TheFooter,
 		WidthLimiter,
 		NFTCard
 	},
@@ -123,7 +126,7 @@ export default {
 	top: 0;
 	left: 0;
 	width: 100%;
-	height: 100vh;
+	height: 120vh;
 	background: url('../assets/bg-peace.jpg');
     background-repeat: no-repeat;
     background-size: cover;
