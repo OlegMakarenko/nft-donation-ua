@@ -1,43 +1,43 @@
 [
     {
         "id": 1000,
-        "name": "Flower",
-        "description": "Symbolic flower in the colors of the Ukrainian flag.",
+        "name": "Ukrainian Sunflower",
+        "description": "Widely spread flower, traditionally associated with Ukrainian lands.",
         "mosaicId": "1804899683FF377D",
         "price": 8
     },
     {
         "id": 1001,
-        "name": "Ukrainian Flag",
-        "description": "Ukrainian national symbol. It symbolizes an endless field of wheat and a clear blue sky.",
+        "name": "The Flag of Ukraine",
+        "description": "The colours symbolize endless fertile land and a clear blue sky.",
         "mosaicId": "49DB04D43E714646",
         "price": 10
     },
     {
         "id": 1002,
         "name": "Tryzub",
-        "description": "The Ukrainian coat of arms – trident, or tryzub – has a long history (over a thousand years, if not more), but at the same time, it is a symbol of a modern country. It is short-spoken – and meaningful as well. It reflects heroic events of the past – and it is a stripe of Ukrainian warriors protecting the sovereignty and territorial integrity of Ukraine today. The word Liberty is encrypted in the symbol.",
+        "description": "The Ukrainian coat of arms – trident, or \"tryzub\" – has a long history of being a national symbol for over a thousand years, if not more. It is short-spoken – and meaningful as well. It reflects heroic events of the past – and it is a stripe of Ukrainian warriors protecting the sovereignty and territorial integrity of Ukraine today. The word Liberty (Ukrainian \"Volia\") is encrypted into the symbol.",
         "mosaicId": "1703495A908A971F",
         "price": 10
     },
     {
         "id": 1003,
-        "name": "Medicals",
+        "name": "First Aid Kit",
         "description": "It will help to sew up a wound, treat an abrasion, purify water, save the life of oneself or a friend.",
         "mosaicId": "2E100F7517DE0780",
         "price": 50
     },
     {
         "id": 1004,
-        "name": "Nutrition",
-        "description": "A complete well-balanced daily diet serving as a source of strength for the defenders of Ukraine.",
+        "name": "Nutrition Pack",
+        "description": "A complete, well-balanced daily diet serves as a source of strength for the defenders of Ukraine.",
         "mosaicId": "206B3C1FB4BFE575",
         "price": 50
     },
     {
         "id": 1005,
-        "name": "Supply",
-        "description": "As a result of the bombing of settlements, many people, in best case, were actually stayed without a livelihood. Therefore, tens of tons of humanitarian aid collecting for them every day.",
+        "name": "Humanitarian Supply",
+        "description": "As a result of the settlement's bombards, civilians are being displaced and cut off from the general gods. Therefore, tens of tons of humanitarian aid collecting for them every day.",
         "mosaicId": "5504FD4DFC894050",
         "price": 50
     },
@@ -51,98 +51,98 @@
     {
         "id": 1007,
         "name": "Mriya",
-        "description": "The largest and most lifting aircraft in the history of world aviation in a single copy built at the Antonov factory. Approximately 200 world records were reached before it was destroyed.",
+        "description": "The largest ever built aircraft in the history of aviation. It had been in a single prototype built at the Antonov factory in Kyiv. More than 200 world records were set by the aircraft. On 25 February 2022, the plane was destroyed by Russian artillery.",
         "mosaicId": "7941B45D368CC650",
         "price": 100
     },
     {
         "id": 1008,
-        "name": "Petrolium",
-        "description": "Canister of fuel for supply vehicles, medical transport and infantry armored vehicles.",
+        "name": "Fuel",
+        "description": "The fuel to supply vehicles, medical transport and infantry-armoured vehicles.",
         "mosaicId": "388E07A1E8F0C10F",
         "price": 100
     },
     {
         "id": 1009,
         "name": "Helmet",
-        "description": "Head armor, sniper protection, also it's easier to think wearing it.",
+        "description": "Head armour, to protect from shrapnel, it's easier to think while wearing.",
         "mosaicId": "6F22EEA24BEF549B",
         "price": 100
     },
     {
         "id": 1010,
         "name": "Body Armour",
-        "description": "Full set of chest armor. Protects against bullets, shrapnel and stray fragments.",
+        "description": "Full-set of chest armour. Protect against bullets, shrapnel and stray fragments.",
         "mosaicId": "4E9CBC596E61D12E",
         "price": 100
     },
     {
         "id": 1011,
-        "name": "Molotov",
-        "description": "Glass bottle with Molotov cocktail. Folk remedy to fight the occupier. Effectively shows itself even against tanks.",
+        "name": "Ukrainian Smoothie",
+        "description": "A special cocktail cooked with love to meet the occupants. Strong enough to stop both troops and vehicles (tanks included).",
         "mosaicId": "0730B8FB09E99DA5",
         "price": 100
     },
     {
         "id": 1012,
         "name": "Ukrainian Tank",
-        "description": "Ukrainian modernization of the T72 tank with a more powerful engine, a new model cannon and a small anti-aircraft gun.",
+        "description": "Ukrainian T72M tank, with a new powerful engine, a modern cannon and a small anti-aircraft gun.",
         "mosaicId": "21A7A2C1263BE680",
         "price": 200
     },
     {
         "id": 1013,
         "name": "Javelin",
-        "description": "Portable missile launcher. Launches homing guided missiles effective against ground armored vehicles and low-flying air targets.",
+        "description": "Portable missile launcher. Launches homing guided missiles effective against ground-armoured vehicles and low-flying air targets.",
         "mosaicId": "086C3C796D3F3843",
         "price": 200
     },
     {
         "id": 1014,
         "name": "Bayraktar",
-        "description": "A small stealth drone armed with several guided bombs and missiles. Thunderstorm for infantry vehicles, tanks, fuel trucks.",
+        "description": "A small stealth drone fitted with guided missiles. Acts as a silent night hunter aimed for commands, special vehicles and fuel trucks.",
         "mosaicId": "75E00B2F9BDAA7EE",
         "price": 500
     },
     {
         "id": 1015,
-        "name": "Mig 29",
-        "description": "Fighter aircraft, effective against a variety of air targets. This was piloted by the mythical  Ghost of Kyiv, who destroyed more than 20 aircraft.",
+        "name": "MIG 29",
+        "description": "A 4-th generation fighter jet was developed to act against a variety of air and ground targets. It was ridden by the mythical Ghost of Kyiv, who destroyed more than 20 Russian aircraft.",
         "mosaicId": "546864545951BA2E",
         "price": 500
     },
     {
         "id": 1016,
-        "name": "Captured Tank",
-        "description": "It is difficult to imagine the surprise of an enemy when a simple farmer on a simple tractor simply takes away his tank from under his nose.",
+        "name": "Ukrainian Farmers",
+        "description": "It is difficult to imagine the shock of an enemy when found his tank stolen by a farmer. Russian occupants are terrified by the secret Ukrainian farmer's unit that acts across the country.",
         "mosaicId": "27E1DCCA622899B8",
         "price": 5000
     },
     {
         "id": 1017,
         "name": "Russian Warship",
-        "description": "Rooskii voienniy korabl idi nakhuy — means “russian warship go fuck yourself“ — that was all the russian ship crew heard about their threats to ukrainian to lay down theirs arms and surrender.",
+        "description": "\"Rooskii voienniy korabl idi nakhuy\" — means Russian warship go fuck yourself. That was the answer to the Russian ship crew's threats to Ukrainians to lay down their arms and surrender.",
         "mosaicId": "2166F1FDA72EDBB6",
         "price": 7000
     },
     {
         "id": 1018,
-        "name": "Zelenskyi",
-        "description": "Sixth President of Ukraine. He was destined to kick Putin's ass, which he successfully managed. Glory to Ukraine.",
+        "name": "Zelensky",
+        "description": "The sixth President of Ukraine. He was destined to kick Putin's ass, which he successfully managed. Glory to Ukraine!",
         "mosaicId": "30B483E8A8BFB1BC",
         "price": 20000
     },
     {
         "id": 1019,
-        "name": "russian-nazzies",
-        "description": "Unofficial prototype of the new small coat of arms of Ukraine. The symbol of the fight against Russian occupation.",
+        "name": "Kick the Nazis",
+        "description": "The crypto community stands against nazism, terror and discrimination!",
         "mosaicId": "76FB8E051DD1A32D",
         "price": 20000
     },
     {
         "id": 1020,
         "name": "Huilo",
-        "description": "A cynical little evil man living in his own little world. He fancies himself the last defender of the spiritual bonds of the great Russian people. His propaganda has poisoned tens of millions of people in Russia. His army is attacking and storming Ukrainian cities for absolutely inconceivable reasons. Place him to the Jail.",
+        "description": "A cynical little evil man, who lives inside his own world. He fancies himself the last defender of the spiritual bonds of the great Russian people. His propaganda has poisoned tens of millions of people in Russia. His army is attacking and storming Ukrainian cities for absolutely inconceivable reasons. Take him to jail.",
         "mosaicId": "39381BFFAABA08CD",
         "price": 35000
     }

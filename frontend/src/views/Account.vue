@@ -59,11 +59,13 @@
 		</div>
 
 		<div v-if="ownedNFTs.length && totalXYM" class="content-center account-background">
-			<div class="text-crop margin-b">
-				<h3 class="title-purple text-center">
-					This account owns NFTs for a total of {{totalXYM}} XYM.
-				</h3>
-			</div>
+			<WidthLimiter>
+				<div class="text-crop margin-b">
+					<h3 class="title-purple text-center">
+						This account owns NFTs for a total of <span style="white-space: nowrap;">{{totalXYM}} XYM</span>
+					</h3>
+				</div>
+			</WidthLimiter>
 		</div>
 	</div>
 	<LoadingSpinner v-else />
