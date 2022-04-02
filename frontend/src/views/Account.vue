@@ -358,7 +358,7 @@ export default {
 		background: var(--color-lightmode-bg-footer);
 
 		.name-container {
-			max-height: 20%;
+			max-height: 30%;
 		}
 
 		.normal {
