@@ -1,5 +1,6 @@
-import * as NFTList from '@src/assets/nfts.json';
-
+import * as NFTListMainnet from '@src/assets/nfts.json';
+import * as NFTListTestnet from '@src/assets/nfts-testnet.json';
+const NFTList = process.env.network === 'testnet' ? NFTListTestnet : NFTListMainnet;
 
 interface NFT {
     id: number;

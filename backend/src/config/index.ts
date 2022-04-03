@@ -1,6 +1,8 @@
-import * as config from './config.json';
+import * as configMainnet from './config.json';
+import * as configTestnet from './config-testnet.json';
 import * as utils from '@src/utils';
 import { NetworkType } from 'symbol-sdk';
+const config = process.env.network === 'testnet' ? configTestnet : configMainnet;
 
 interface AppConfig {
     PORT: number;

@@ -7,7 +7,7 @@ export const stringToArray = (str: string | undefined): Array<any> => {
 
     try {
         if (typeof str === 'string') result = JSON.parse(str);
-    } catch (e) {}
+    } catch (e) { }
     return result;
 };
 
@@ -65,3 +65,10 @@ export const depositMosaicSpamFilter = (mosaics: Mosaic[], nativeMosaicId: Mosai
 
     return nativeMosaicAmount >= 8;
 };
+
+export const objectFromEntries = (iterable: Array<any>) => {
+    return [...iterable].reduce((obj, [key, val]) => {
+        obj[key] = val
+        return obj
+    }, {})
+}

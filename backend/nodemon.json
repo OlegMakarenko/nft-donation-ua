@@ -8,5 +8,8 @@
         "dist",
         "node_modules"
     ],
-    "exec": "npm run build && node dist/app.js"
+    "exec": "npm run build && node dist/app.js",
+    "env": {
+        "network": "testnet"
+    }
 }
