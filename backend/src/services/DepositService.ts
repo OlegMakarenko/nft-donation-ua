@@ -151,7 +151,7 @@ export class DepositService {
             nft = NFTService.getNFTById(nftId);
         } catch (e) {
             // If we failed to find NFT - send thank you transaction
-            logger.error(`[processDesposit] failed to get NFT. ${(e as Error).message}`);
+            logger.error(`[processDesposit] failed to get NFT. ${(e as Error).message}. Hash: ${deposit.transactionInfo!.hash}`);
             await sleep(100);
             BlockchainService.sendTransfer(
                 this.networkConfig,

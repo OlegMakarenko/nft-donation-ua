@@ -1,7 +1,7 @@
 <template>
     <div class="loading-container" :class="{'loading-small': small}">
         <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-        <h3 v-if="!small"> Please wait </h3>
+        <h3 v-if="!small"> {{translate('message_please_wait')}} </h3>
     </div>
 </template>
 
@@ -11,6 +11,12 @@ export default {
         small: {
             type: Boolean
         }
+    },
+
+    methods: {
+        translate(key) {
+			return this.$store.getters['ui/translate'](key);
+		}
     }
 }
 </script>

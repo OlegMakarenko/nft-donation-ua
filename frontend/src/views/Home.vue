@@ -7,11 +7,14 @@
 					<div class="section-about">
 						<div class="content-about">
 							<div class="text-crop margin-b">
-								<h2 class="title">Stand with Ukraine <br> the Donation Platform</h2>
+								<h2 class="title" style="white-space: pre-line">{{translate('home_page_title')}}</h2>
 							</div>
 							<div class="text-crop">
 								<p class="hero">
-									Ukraine holds the defense against russian occupying army attacks. The russian army, led by the cynical lies of their leader, behaves ruthlessly, sparing neither children nor the elderly. Entire cities with people's houses, factories and schools are being destroyed. You can stand with us and help Ukraine by making XYM donation to this address: <a :href="explorerURL" target="_blank">{{ mainAccountAddress }}</a>. Tokens will be sold and transferred to the account of the Ukrainian army and humanitarian aid funds. You also have the opportunity to get an NFT sticker, which you can find below.
+									{{translate('home_page_description_p1')}} <a :href="explorerURL" target="_blank">{{mainAccountAddress}}</a>. {{translate('home_page_description_p2')}}
+									<router-link class="header-nav-link" to="/account/">
+										{{translate('home_page_description_link')}}
+									</router-link>
 								</p>
 							</div>
 						</div>
@@ -98,6 +101,12 @@ export default {
 				variant: 'danger',
 				solid: true,
 			}));
+	},
+
+	methods: {
+		translate(key) {
+			return this.$store.getters['ui/translate'](key);
+		}
 	}
 };
 </script>
@@ -250,6 +259,10 @@ export default {
 }
 
 @media #{$screen-mobile} {
+	.image-rockets {
+		margin-top: 430px;
+	}
+	
 	.nft-content {
 		.nft-list {
 			grid-template-columns: repeat(1, minmax(0, 1fr));;

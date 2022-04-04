@@ -8,20 +8,20 @@
 					</div>
 					<div class="padding card nft-details" :class="{'bg-loading': isLoading || isCacheLoading}">
 						<div class="margin-b-sm text-crop title-nft-name">
-							<h2 class="title-yellow inline">{{ name }}</h2>
+							<h2 class="title-yellow inline">{{ translate('nft_name_' + name) }}</h2>
 						</div>
 						
 						<div class="margin-b text-crop">
-							<span class="item-value">#{{ id }}</span> <a class="mosaic-id" :href="mosaicExplorerURL"  target="_blank">Mosaic: {{ mosaicId }}</a>
+							<span class="item-value">#{{ id }}</span> <a class="mosaic-id" :href="mosaicExplorerURL"  target="_blank">{{translate('nft_details_page_mosaic')}} {{ mosaicId }}</a>
 						</div>
 					
 						<div class="row-purchase">
 							<div>
-								<div class="label item-title">Price:</div>
+								<div class="label item-title">{{translate('nft_details_page_price')}}</div>
 								<div class="col-price-value">{{ price }} XYM</div>
 							</div>
 							<div>
-								<div class="label item-title">Available:</div>
+								<div class="label item-title">{{translate('nft_details_page_available')}}</div>
 								<div class="">
 									<span class="col-availability-value">{{ availableCountText }}</span> / 
 									<span>{{ totalCount }}</span>
@@ -35,23 +35,21 @@
 
 				<div v-if="availableCount > 0" class="padding card section-payment margin-b">
 					<div class="margin-b text-crop">
-						<h3>How to get NFT</h3>
+						<h3>{{translate('nft_details_page_purchase_t')}}</h3>
 					</div>
 					
 					<div v-if="!isUserWarned" class="margin-b text-crop">
-						<p>
-						Caution! Aware that this is a donation service, and NFTs are not refundable. Please note that NFT will not be sent to your account if the transferred XYM is insufficient, the message contains the wrong number or NFT is out of stock. Payments can not be refunded.
-						</p>
+						<p>{{translate('nft_details_page_warning')}}</p>
 					</div>
 
 					<div class="fullweight content-center">
 						<Button v-if="!isUserWarned" @click="() => isUserWarned = true">
-							I've read the caution above and understand it
+							{{translate('nft_details_page_accept_button')}}
 						</Button>
 					</div>
 
 					<div v-if="isUserWarned">
-						<div class="label item-title">Select a number of NFTs:</div>
+						<div class="label item-title">{{translate('nft_details_page_number_selector')}}</div>
 						<CountSelector
 							class="margin-b"
 							:value="requestedCount"
@@ -62,33 +60,33 @@
 
 						<div class="margin-b text-crop">
 							<p>
-							To receive NFT to your account you should send transfer of <code :key="amount">{{ amount }} XYM</code> to this address: <code>{{ address }}</code> with following message: <code>{{ id }}</code>. Please DO  NOT encrypt the message, otherwise transfer will not be processed. It may take up to 10 minutes to receive the NFT.
+							{{translate('nft_details_page_guide_p1')}} <code style="white-space: nowrap;" :key="amount">{{ amount }} XYM</code> {{translate('nft_details_page_guide_p2')}} <code>{{ address }}</code> {{translate('nft_details_page_guide_p3')}} <code>{{ id }}</code>{{translate('nft_details_page_guide_p4')}}
 							</p>
-							<p>Fill the transfer transaction with the data below or scan the QR code with the wallet's scanner.</p>
+							<p>{{translate('nft_details_page_guide_p5')}}</p>
 						</div>
 
 						<hr class="separastor" />
 						
 						<div class="text-crop margin-b-sm">
-							<h4>Transaction</h4>
+							<h4>{{translate('nft_details_page_transaction_t')}}</h4>
 						</div>
 
 						<div class="grid-gap-sm margin-b send-form">
 							<div class="text-crop text-red fullwidth">
 								<p>
-									<div>1. To / Recipient Address:</div> 
+									<div>{{translate('nft_details_page_recipient_c')}}</div> 
 									<div class="copy-box bg-copy-icon pointer" @click="copy(address)">{{ address }}</div>
 								</p>
 								<p>
-									<div>2. Mosaic:</div>
+									<div>{{translate('nft_details_page_mosaic_c')}}</div>
 									<div class="copy-box">symbol.xym</div>
 								</p>
 								<p>
-									<div>3. Amount:</div>
+									<div>{{translate('nft_details_page_amount_c')}}</div>
 									<div class="copy-box bg-copy-icon pointer" :key="amount" @click="copy(amount)">{{ amount }}</div>
 								</p>
 				
-								<div>4. Message:</div>
+								<div>{{translate('nft_details_page_message_c')}}</div>
 								<div class="copy-box bg-copy-icon pointer" @click="copy(id)">{{ id }}</div>
 							
 							</div>
@@ -123,10 +121,10 @@
 
 				<div v-else-if="!isLoading" class="padding card section-payment margin-b">
 					<div class="margin-b text-crop">
-						<h3>How to get NFT</h3>
+						<h3>{{translate('nft_details_page_purchase_t')}}</h3>
 					</div>
 					<div class="content-center">
-						<h4 class="inline">This NFT is out of stock</h4>
+						<h4 class="inline">{{translate('nft_details_page_out_of_stock')}}</h4>
 					</div>
 				</div>
 			</WidthLimiter>
@@ -257,7 +255,7 @@ export default {
 		async copy(text) {
 			try {
 				await copyToClipboard(text);
-				this.$bvToast.toast('Copied', {
+				this.$bvToast.toast(this.translate('message_copied'), {
 					variant: 'success',
 					solid: true,
 					noCloseButton: true
@@ -265,13 +263,17 @@ export default {
 			}
 			catch(e) {
 				console.error(e);
-				this.$bvToast.toast('Failed to copy. ' + e.message, {
+				this.$bvToast.toast(this.translate('message_failed_copy') + '. ' + e.message, {
 					variant: 'danger',
 					solid: true,
 					noCloseButton: true
 				});
 			}
 		},
+
+		translate(key) {
+			return this.$store.getters['ui/translate'](key);
+		}
 	}
 };
 </script>

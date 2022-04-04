@@ -5,11 +5,11 @@
         </div>
         <div class="nft-card-desc">
             <h4 class="title" :title="name">
-                {{ name }}
+                {{ translate('nft_name_' + name) }}
             </h4>
             <div>
                 <div class="nft-count">
-                    Available {{ count }}
+                    {{translate('home_page_nft_card_available')}} {{ count }}
                 </div>
                 <div class="nft-price">
                     {{ price }} XYM
@@ -17,7 +17,7 @@
             </div>
         </div>
         <h3 v-if="soldOut" class="nft-sold-out">
-            Sold Out
+            {{translate('home_page_nft_card_sold_out')}}
         </h3>
         <LoadingSpinner small v-if="isLoading" />
     </router-link>
@@ -64,6 +64,12 @@ export default {
         soldOut() {
             return this.count === 0 && !this.isLoading;
         }
+    },
+
+    methods: {
+        translate(key) {
+			return this.$store.getters['ui/translate'](key);
+		}
     }
 }
 </script>

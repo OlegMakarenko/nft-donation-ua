@@ -9,7 +9,7 @@ export default {
 	},
 
 	getters: {
-		getNameByKey: () => key => i18n.getName(key),
+		translate: () => key => i18n.getName(key),
 		languages: state => state.languages,
 		currentLanguage: state => state.currentLanguage,
 		isMobile() {

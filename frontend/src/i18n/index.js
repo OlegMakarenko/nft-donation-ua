@@ -1,6 +1,7 @@
 const languages = {
-	'English': require('./en-us'),
+	'English': require('./en.json'),
 	'Українська': require('./ua.json'),
+	'日本語': require('./ja.json'),
 };
 
 const DEFAULT_LANGUAGE = 'English';
@@ -8,8 +9,10 @@ const DEFAULT_LANGUAGE = 'English';
 const getUserLanguage = () => {
 	let storedLang = localStorage.getItem('userLanguage');
 
-	if (null != storedLang && null != languages[storedLang]) { return languages[storedLang]; } else {
-		setCurrentLanguage(DEFAULT_LANGUAGE);
+	if (null != storedLang && null != languages[storedLang]) { 
+		return languages[storedLang]; 
+	}
+	else {
 		return languages[DEFAULT_LANGUAGE];
 	}
 };

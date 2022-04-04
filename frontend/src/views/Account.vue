@@ -4,21 +4,28 @@
 		<div class="content-center margin-b">
 			<WidthLimiter>
 				<div class="row-address-input grid-gap-sm">
-					<TextBox v-model="rawAddress" placeholder="Please enter your address to see owned NFTs" @enter="onButtonClick" />
+					<TextBox v-model="rawAddress" :placeholder="translate('account_page_input_placeholder')" @enter="onButtonClick" />
 					<Button @click="onButtonClick">
-						Show
+						{{translate('account_page_show_button')}}
 					</Button>
+				</div>
+			</WidthLimiter>
+		</div>
+		<div v-if="!confirmations && !ownedNFTs.length && $route.params.address" class="content-center account-background">
+			<WidthLimiter class="margin-b">
+				<div class="text-crop margin-b text-center">
+					<h3 class="title">{{translate('account_page_no_nfts')}}</h3>
 				</div>
 			</WidthLimiter>
 		</div>
 		<div v-if="confirmations || ownedNFTs.length" class="content-center account-background">
 			<WidthLimiter class="margin-b">
 				<div class="text-crop margin-b">
-					<h2 class="title">Owned NFTs</h2>
+					<h2 class="title">{{translate('account_page_owned_t')}}</h2>
 				</div>
 				<div class="grid-gap nft-list">
 					<div v-if="confirmations" class="nft-list-item nft-order">
-						<div class="label">Order processing</div>
+						<div class="label">{{translate('account_page_order_processing')}}</div>
 						<progress :max="minConfirmations" :value="confirmations" />
 					</div>
 					<div v-for="(nft, nftIndex) in ownedNFTs" class="nft-list-item" :key="'block' + nftIndex">
@@ -33,11 +40,11 @@
 								x{{ nft.count }}
 							</h3>
 							<h4 class="title-purple hover">
-								Count: {{ nft.count }}
+								{{translate('account_page_count')}} {{ nft.count }}
 							</h4>
 						</div>
 						<div class="name-container">
-							<h3 class="title-yellow inline">{{nft.name }}</h3>
+							<h3 class="title-yellow inline">{{translate('nft_name_'+ nft.name) }}</h3>
 						</div>
 					</div>
 				</div>
@@ -62,7 +69,7 @@
 			<WidthLimiter>
 				<div class="text-crop margin-b">
 					<h3 class="title-purple text-center">
-						This account owns NFTs for a total of <span style="white-space: nowrap;">{{totalXYM}} XYM</span>
+						{{translate('account_page_total_xym')}} <span style="white-space: nowrap;">{{totalXYM}} XYM</span>
 					</h3>
 				</div>
 			</WidthLimiter>
@@ -113,6 +120,9 @@ export default {
 
 	mounted() {
 		const address = this.$route.params.address;
+		this.ownedNFTs = [];
+		this.coordArray = [];
+		this.confirmations = 0;
 		
 		if (verifyAddress(address)) {
 			this.rawAddress = address;
@@ -258,11 +268,14 @@ export default {
 			}
 		},
 		showInvalidAddressMessage() {
-			this.$bvToast.toast('Incorrect Address', {
+			this.$bvToast.toast(this.translate('message_incorrect_address'), {
 				variant: 'danger',
 				solid: true,
 				noCloseButton: true
 			});
+		},
+		translate(key) {
+			return this.$store.getters['ui/translate'](key);
 		}
 	}
 };

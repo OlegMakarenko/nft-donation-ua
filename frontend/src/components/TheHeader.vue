@@ -7,31 +7,71 @@
                 </router-link>
                 <div class="header-nav">
                     <router-link class="header-nav-link" to="/" :active="$route.name === 'home'">
-                        Home
+                        {{translate('menu_home')}}
                     </router-link>
                     <div class="header-nav-separator" />
                     <router-link class="header-nav-link" to="/account/" :active="$route.name === 'account'">
-                        My NFTs
+                        {{translate('menu_nfts')}}
                     </router-link>
+                    <div class="header-nav-separator" />
+                    |
+                    <div class="header-nav-separator" />
+                    <div class="header-nav-link pointer" @click="langDialog = true">
+                        {{translate('language')}}
+                    </div>
                 </div>
             </div>
         </WidthLimiter>
+        <div v-if="langDialog || !lang" class="dialog-wrapper">
+            <dialog open class="padding">
+                <div class="text-crop margin-b">
+                    <h3>{{translate('select_language_title')}}</h3>
+                </div>
+                <Button 
+                    v-for="(lang) in langs" :key="'l' + lang"
+                    class="margin-b-sm"
+                    @click="changeLang(lang)">
+                    {{lang}}
+                </Button>
+            </dialog>
+        </div>
     </div>
 </template>
 
 <script>
+import Button from '../components/Button.vue';
 import WidthLimiter from '../components/WidthLimiter.vue';
 import imgFlag from '../assets/flag.svg';
 
 export default {
     components: {
+        Button,
 		WidthLimiter,
 	},
 
     data() {
         return {
-            imgFlag
+            imgFlag,
+            langDialog: false
         };
+    },
+
+    computed: {
+        lang() {
+			return this.$store.getters['ui/currentLanguage'];
+		},
+        langs() {
+			return this.$store.getters['ui/languages'];
+		}
+    },
+
+    methods: {
+        changeLang(lang) {
+            this.$store.dispatch('ui/changeLanguage', lang);
+        },
+        translate(key) {
+			return this.$store.getters['ui/translate'](key);
+		}
     }
 }
 </script>
@@ -80,6 +120,29 @@ export default {
 
     &[active=true] {
         color: var(--color-darkmode-text-body);
+    }
+}
+
+.dialog-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    background-color: #0009;
+    backdrop-filter: blur(10px);
+
+    dialog {
+        border-radius: $border-radius;
+        background-color: var(--color-darkmode-bg-main);
+
+        button {
+            width: 100%;
+        }
     }
 }
 </style>
