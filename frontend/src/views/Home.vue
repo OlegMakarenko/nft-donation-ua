@@ -52,7 +52,7 @@ import TheFooter from '../components/TheFooter.vue';
 import WidthLimiter from '../components/WidthLimiter.vue';
 import NFTCard from '../components/NFTCard.vue';
 import imgSymbol from '../assets/symbol.png';
-import * as config from '../config/config.json';
+import { config } from '../config';
 
 export default {
 	name: 'Home',

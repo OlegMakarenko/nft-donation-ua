@@ -2,6 +2,7 @@
   "name": "nft-donation-frontend",
   "version": "0.1.0",
   "scripts": {
+    "dev:testnet": "vue-cli-service serve --mode testnet",
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "eslint src/",

@@ -1,4 +1,5 @@
-import cachedNFTsDisplay from '../config/nft-display.json';
+
+import { nftDisplay as cachedNFTsDisplay } from '../config';
 import ImageBgPeace from '../assets/bg-peace.jpg';
 import ImageBgRocketsMobile from '../assets/bg-rockets-mobile.png';
 import ImageBgRockets from '../assets/bg-rockets.png';

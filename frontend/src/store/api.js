@@ -1,7 +1,7 @@
 import Lock from './lock';
 import { BlockchainService } from '../services/BlockchainService';
-import * as config from '../config/config.json';
-import { Account, PublicAccount } from 'symbol-sdk';
+import { config } from '../config';
+import { PublicAccount } from 'symbol-sdk';
 
 const LOCK = Lock.create();
 

@@ -1,26 +1,15 @@
 import {
-    Account,
     Address,
-    Deadline,
-    Mosaic,
-    MosaicId,
     MosaicService,
-    NetworkConfiguration,
     NetworkHttp,
-    NetworkType,
     Order,
-    PlainMessage,
-    PublicAccount,
     RepositoryFactoryHttp,
     TransactionGroup,
     TransactionHttp,
-    TransactionService,
     TransactionType,
-    TransferTransaction,
     UInt64,
 } from 'symbol-sdk';
 import { timeout } from 'rxjs/operators';
-import * as config from '../config/config.json';
 
 const REQUEST_TIMEOUT = 5000;
 

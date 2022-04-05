@@ -29,7 +29,7 @@
 							</div>
 						</div>
 						<hr class="separastor" />
-						<div>{{ description }}</div>
+						<div>{{ translatedDescription }}</div>
 					</div>
 				</div>
 
@@ -147,7 +147,7 @@ import LoadingSpinner from '../components/LoadingSpinner.vue';
 import WidthLimiter from '../components/WidthLimiter.vue';
 import QRCode from '../components/QRCode.vue';
 import { copyToClipboard } from '../utils'
-import * as config from '../config/config.json';
+import { config } from '../config';
 
 export default {
 	name: 'Details',
@@ -203,6 +203,12 @@ export default {
 			else {
 				return this.availableCount;
 			}
+		},
+		translatedDescription() {
+			const key = 'nft_desc_' + this.name;
+			const translation = this.translate(key);
+			
+			return translation !== key ? translation : this.description;
 		}
 	},
 

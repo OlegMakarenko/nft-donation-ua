@@ -86,7 +86,7 @@ import LoadingSpinner from '../components/LoadingSpinner.vue';
 import TextBox from '../components/TextBox.vue';
 import WidthLimiter from '../components/WidthLimiter.vue';
 import { PublicAccount } from 'symbol-sdk';
-import * as config from '../config/config.json';
+import { config } from '../config';
 
 export default {
 	name: 'Details',

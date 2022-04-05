@@ -1,7 +1,9 @@
-import cachedNFTs from '../config/nft.json';
-import cachedNFTsDisplay from '../config/nft-display.json';
+import {
+    nft as cachedNFTs, 
+    nftDisplay as cachedNFTsDisplay 
+} from '../config';
 import { StorageService } from 'garush-storage';
-import { KeyGenerator, MetadataType, MosaicId, TransactionHttp, TransactionGroup, RepositoryFactoryHttp } from 'symbol-sdk';
+import { KeyGenerator, MetadataType, TransactionHttp, TransactionGroup, RepositoryFactoryHttp } from 'symbol-sdk';
 
 const PARSER = 'ZSU';
 const VERSION = 1;

@@ -1,5 +1,5 @@
-import { Address, MosaicId, PublicAccount, TransactionType } from 'symbol-sdk';
-import * as config from '../config/config.json';
+import { Address, MosaicId, PublicAccount } from 'symbol-sdk';
+import { config } from '../config';
 import { BlockchainService } from '../services/BlockchainService';
 import { NFTService } from '../services/NFTService';
 import { stringToCoordArray } from '../utils';
