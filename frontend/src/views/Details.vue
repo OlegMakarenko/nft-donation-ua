@@ -37,6 +37,15 @@
 					<div class="margin-b text-crop">
 						<h3>{{translate('nft_details_page_purchase_t')}}</h3>
 					</div>
+
+					<div class="label item-title">{{translate('nft_details_page_number_selector')}}</div>
+					<CountSelector
+						class="margin-b"
+						:value="requestedCount"
+						:maxValue="availableCount" 
+						:key="requestedCount"
+						@change="_ => requestedCount = _"
+					/>
 					
 					<div v-if="!isUserWarned" class="margin-b text-crop">
 						<p>{{translate('nft_details_page_warning')}}</p>
@@ -49,15 +58,6 @@
 					</div>
 
 					<div v-if="isUserWarned">
-						<div class="label item-title">{{translate('nft_details_page_number_selector')}}</div>
-						<CountSelector
-							class="margin-b"
-							:value="requestedCount"
-							:maxValue="availableCount" 
-							:key="requestedCount"
-							@change="_ => requestedCount = _"
-						/>
-
 						<div class="margin-b text-crop">
 							<p>
 							{{translate('nft_details_page_guide_p1')}} <code style="white-space: nowrap;" :key="amount">{{ amount }} XYM</code> {{translate('nft_details_page_guide_p2')}} <code>{{ address }}</code> {{translate('nft_details_page_guide_p3')}} <code>{{ id }}</code>{{translate('nft_details_page_guide_p4')}}

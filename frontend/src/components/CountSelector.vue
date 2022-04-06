@@ -112,11 +112,11 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    color: #000;
     border-top: 2px solid var(--color-lightmode-button-default-stroke);
     border-bottom: 2px solid var(--color-lightmode-button-default-stroke);
     user-select: none;
-    background: #000;
+    background: var(--color-lightmode-bg-gray);
     
 }
 
