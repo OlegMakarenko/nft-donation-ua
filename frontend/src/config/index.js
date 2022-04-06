@@ -4,5 +4,5 @@ import nftMainnet from './nft.json';
 import nftTestnet from './nft-testnet.json';
 export {default as nftDisplay} from './nft-display.json';
 
-export const config = process.env.NODE_ENV === 'testnet' ? configTestnet : configMainnet;
-export const nft = process.env.NODE_ENV === 'testnet' ? nftTestnet : nftMainnet;
+export const config = process.env.NETWORK === 'testnet' ? configTestnet : configMainnet;
+export const nft = process.env.NETWORK === 'testnet' ? nftTestnet : nftMainnet;

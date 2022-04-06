@@ -8,7 +8,7 @@
 					</div>
 					<div class="padding card nft-details" :class="{'bg-loading': isLoading || isCacheLoading}">
 						<div class="margin-b-sm text-crop title-nft-name">
-							<h2 class="title-yellow inline">{{ translate('nft_name_' + name) }}</h2>
+							<h2 class="title-yellow inline">{{ translatedName }}</h2>
 						</div>
 						
 						<div class="margin-b text-crop">
@@ -203,6 +203,12 @@ export default {
 			else {
 				return this.availableCount;
 			}
+		},
+		translatedName() {
+			const key = 'nft_name_' + this.name;
+			const translation = this.translate(key);
+			
+			return translation !== key ? translation : this.name;
 		},
 		translatedDescription() {
 			const key = 'nft_desc_' + this.name;
