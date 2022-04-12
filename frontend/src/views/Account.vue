@@ -1,5 +1,5 @@
 <template>
-	<div v-if="!isLoading" class="account account-background">
+	<div class="account account-background">
 		<div class="background-filler account-background" />
 		<div class="content-center margin-b">
 			<WidthLimiter>
@@ -11,7 +11,7 @@
 				</div>
 			</WidthLimiter>
 		</div>
-		<div v-if="!confirmations && !ownedNFTs.length && $route.params.address" class="content-center account-background">
+		<div v-if="!isLoading && !confirmations && !ownedNFTs.length && $route.params.address" class="content-center account-background">
 			<WidthLimiter class="margin-b">
 				<div class="text-crop margin-b text-center">
 					<h3 class="title">{{translate('account_page_no_nfts')}}</h3>
@@ -74,8 +74,8 @@
 				</div>
 			</WidthLimiter>
 		</div>
-	</div>
-	<LoadingSpinner v-else />
+		<LoadingSpinner v-if="isLoading" />
+	</div>	
 </template>
 
 <script>
@@ -104,7 +104,7 @@ export default {
 			rawAddress: '',
 			ownedNFTs: [],
 			coordArray: [],
-			confirmations: 0
+			confirmations: 0,
 		};
 	},
 
@@ -119,6 +119,11 @@ export default {
 	},
 
 	mounted() {
+		if (window.accountTimer) {
+			clearTimeout(window.accountTimer);
+			window.accountTimer = null;
+		}
+
 		const address = this.$route.params.address;
 		this.ownedNFTs = [];
 		this.coordArray = [];
@@ -132,6 +137,13 @@ export default {
 		else {
 			address && this.showInvalidAddressMessage();
 			this.rawAddress = '';
+		}
+	},
+
+	beforeUnmount() {
+		if (window.accountTimer) {
+			clearTimeout(window.accountTimer);
+			window.accountTimer = null;
 		}
 	},
 
@@ -234,7 +246,7 @@ export default {
 				const mainAccount = PublicAccount.createFromPublicKey(config.MAIN_ACCOUNT_PUBLIC_KEY, networkConfig.networkType);
 				const userAccount = PublicAccount.createFromPublicKey(publicKey, networkConfig.networkType);
 
-				setInterval(async() => {
+				window.accountTimer = setInterval(async() => {
 					try {
 						const chainHeight = await BlockchainService.getChainHeight(networkConfig);
 						const transactions = await BlockchainService.getTransactions(networkConfig, userAccount, 'sent');
@@ -285,6 +297,7 @@ export default {
 .account {
 	position: relative;
 	height: 100%;
+	min-height: 90vh;
 }
 
 .account-background {

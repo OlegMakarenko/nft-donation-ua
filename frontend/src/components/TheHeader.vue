@@ -10,14 +10,16 @@
                         {{translate('menu_home')}}
                     </router-link>
                     <div class="header-nav-separator" />
-                    <router-link class="header-nav-link" to="/account/" :active="$route.name === 'account'">
+                    <router-link class="header-nav-link" to="/account" :active="$route.name === 'account'">
                         {{translate('menu_nfts')}}
                     </router-link>
                     <div class="header-nav-separator" />
-                    |
+                    <router-link class="header-nav-link" to="/raised" :active="$route.name === 'raised'">
+                        {{translate('raised')}}
+                    </router-link>
                     <div class="header-nav-separator" />
-                    <div class="header-nav-link pointer" @click="langDialog = true">
-                        {{translate('language')}}
+                    <div class="header-nav-link language pointer" @click="langDialog = true">
+                        {{languageSelector}}
                     </div>
                 </div>
             </div>
@@ -62,7 +64,10 @@ export default {
 		},
         langs() {
 			return this.$store.getters['ui/languages'];
-		}
+		},
+        languageSelector() {
+            return this.translate('langName').substring(0, 3);
+        }
     },
 
     methods: {
@@ -121,6 +126,13 @@ export default {
     &[active=true] {
         color: var(--color-darkmode-text-body);
     }
+}
+
+.language {
+    border-radius: $border-radius;
+    color: var(--color-darkmode-bg-navbar);
+    background: var( --color-darkmode-text-footer);
+    padding: 0 5px;
 }
 
 .dialog-wrapper {

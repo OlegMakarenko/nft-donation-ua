@@ -1,19 +1,24 @@
 <template>
 	<div id="app" class="root-fetching">
-		<TheHeader />
-        <div class="page-wrapper margin-t">
-            <transition name="view">
-                <router-view v-if="!isLoading && !isError" :key="$route.fullPath"/>
-            </transition>
+        <div class="app-content">
+            <TheHeader />
+            <div class="page-wrapper margin-t">
+                <transition name="view">
+                    <router-view v-if="!isLoading && !isError" :key="$route.fullPath"/>
+                </transition>
+            </div>
         </div>
+        <TheFooter />
 	</div>
 </template>
 
 <script>
+import TheFooter from './components/TheFooter.vue';
 import TheHeader from './components/TheHeader.vue';
 import LoadingSpinner from './components/LoadingSpinner.vue';
 export default {
     components: {
+        TheFooter,
 		TheHeader,
         LoadingSpinner
 	},
@@ -35,22 +40,28 @@ export default {
 </script>
 
 <style lang="scss">
-html, body, #app {
-    width: 100%;
-    height: 100%;
+html, body {
     margin: 0;
     padding: 0;
+    width: 100%;
 }
 
 #app {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
 }
 
+.app-content {
+    width: 100%;
+}
+
 .page-wrapper {
     padding-top: 60px;
-    height: 100%;
 }
 
 .noselect {

@@ -9,8 +9,13 @@ const routerConfig = {
 			return { x: 0, y: 0 };
 		}
 
-		return savedPosition;
-	  },
+		if (savedPosition) {
+			setTimeout(() => {
+				window.scrollTo && window.scrollTo({top: savedPosition.y})	
+			}, 500);
+			return savedPosition;
+		}
+	},
 	routes: [
 		{
 			path: '/',
@@ -31,6 +36,11 @@ const routerConfig = {
 			path: '/account/:address',
 			name: 'account',
 			component: () => import('./views/Account.vue')
+		},
+		{
+			path: '/raised',
+			name: 'raised',
+			component: () => import('./views/Participants.vue')
 		},
 		{
 			path: '*',

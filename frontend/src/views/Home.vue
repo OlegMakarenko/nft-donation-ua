@@ -42,13 +42,11 @@
 					</div>
 				</WidthLimiter>
 			</div>
-			<TheFooter />
 		</div>
 	</div>
 </template>
 
 <script>
-import TheFooter from '../components/TheFooter.vue';
 import WidthLimiter from '../components/WidthLimiter.vue';
 import NFTCard from '../components/NFTCard.vue';
 import imgSymbol from '../assets/symbol.png';
@@ -57,7 +55,6 @@ import { config } from '../config';
 export default {
 	name: 'Home',
 	components: {
-		TheFooter,
 		WidthLimiter,
 		NFTCard
 	},

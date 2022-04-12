@@ -134,13 +134,11 @@
 				</div>
 			</WidthLimiter>
 		</div>
-		<TheFooter />
 		<LoadingSpinner v-if="isCacheLoading || isLoading" />
 	</div>
 </template>
 
 <script>
-import TheFooter from '../components/TheFooter.vue';
 import Button from '../components/Button.vue';
 import CountSelector from '../components/CountSelector.vue';
 import LoadingSpinner from '../components/LoadingSpinner.vue';
@@ -153,7 +151,6 @@ export default {
 	name: 'Details',
 
 	components: {
-		TheFooter,
 		Button,
 		CountSelector,
 		LoadingSpinner,

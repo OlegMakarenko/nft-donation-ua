@@ -36,7 +36,7 @@
     "account_page_owned_t": "保有NFT",
     "account_page_order_processing": "進行中",
     "account_page_count": "枚数:",
-    "account_page_total_xym": "このアカウントがNFT購入を通じて寄付した",
+    "account_page_total_xym": "このアカウント内にあるNFTを通じて寄付された総枚数",
     "account_page_no_nfts": "このアカウントにはまだNFTはありません",
     "message_copied": "コピー完了",
     "message_failed_copy": "コピーに失敗しました",

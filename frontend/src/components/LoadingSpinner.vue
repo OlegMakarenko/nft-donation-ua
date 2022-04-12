@@ -1,7 +1,8 @@
 <template>
     <div class="loading-container" :class="{'loading-small': small}">
-        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+        <div v-if="!progress" class="lds-ring"><div></div><div></div><div></div><div></div></div>
         <h3 v-if="!small"> {{translate('message_please_wait')}} </h3>
+        <progress v-if="progress" class="margin-t" :min="0" :max="100" :value="percent" />
     </div>
 </template>
 
@@ -10,6 +11,14 @@ export default {
     props: {
         small: {
             type: Boolean
+        },
+
+        progress: {
+            type: Boolean
+        },
+
+        percent: {
+            type: Number
         }
     },
 
@@ -72,6 +81,23 @@ export default {
 
 .lds-ring div:nth-child(3) {
     animation-delay: -0.15s;
+}
+
+progress {
+    border-radius: 4px;
+    height: 10px;
+
+    &::-webkit-progress-bar {
+        border-width: 2px;
+        border-color: #fff;;
+        border-style: solid;
+        background-color: #000;
+    }
+
+    &::-webkit-progress-value {
+        background-color: #fff;;
+        border-radius: 0;
+    }
 }
 
 @keyframes lds-ring {

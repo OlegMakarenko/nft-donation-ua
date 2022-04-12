@@ -60,8 +60,6 @@ export const stringToCoordArray = (str) => {
 
     const formattedEncodedStr = encodedStr.replace(/=/g, '');
 
-    console.log(formattedEncodedStr.slice(0, 20))
-
     const min = 10;
     const max = 90;
 
@@ -70,8 +68,6 @@ export const stringToCoordArray = (str) => {
         .map(addressChar => Math.round(
             (charset.indexOf(addressChar.toLowerCase()) * (max - min)  / charset.length) + min
         ));
-
-    console.log(singleCoords.slice(0, 20))
 
     const coords = [];
 
@@ -90,4 +86,8 @@ export const base64ToUint8Array = (base64) => {
         bytes[i] = binary_string.charCodeAt(i);
     }
     return bytes;
+}
+
+export const sleep = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }

@@ -125,9 +125,10 @@ export class BlockchainService {
         const searchCriteria = {
             pageNumber,
             pageSize,
-            order: Order.Asc,
+            order: Order.Desc,
             type: transactionTypes,
             group: TransactionGroup.Confirmed,
+            embedded: true
         };
 
         switch (directionFilter) {

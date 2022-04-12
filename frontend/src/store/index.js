@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import api from './api';
 import nft from './nft';
+import participants from './participants';
 import ui from './ui';
 
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
 	modules: {
 		api,
 		nft,
+		participants,
 		ui,
 	},
 	actions: {
