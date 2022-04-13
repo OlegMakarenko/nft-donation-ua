@@ -11,12 +11,12 @@
                         <h2 class="title text-center">
                             {{ totalFormatted }} XYM
                             <br>
-                            Raised by community 
+                            {{translate('raised_page_title')}}
                         </h2>
                     </div>
                     <div class="text-crop margin-b">
-                        <p class="title hero text-center">
-                            List of accounts participated in donation. Click on a card to open owned NFTs.
+                        <p class="title hero text-center" style="white-space: pre-line">
+                            {{translate('raised_page_desc')}}
                         </p>
                     </div>
                     <div class="account-list">

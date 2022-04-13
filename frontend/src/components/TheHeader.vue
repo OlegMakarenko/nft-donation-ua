@@ -15,7 +15,7 @@
                     </router-link>
                     <div class="header-nav-separator" />
                     <router-link class="header-nav-link" to="/raised" :active="$route.name === 'raised'">
-                        {{translate('raised')}}
+                        {{translate('menu_raised')}}
                     </router-link>
                     <div class="header-nav-separator" />
                     <div class="header-nav-link language pointer" @click="langDialog = true">
