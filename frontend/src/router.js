@@ -5,7 +5,7 @@ Vue.use(Router);
 const routerConfig = {
 	mode: 'history',
 	scrollBehavior(to, from, savedPosition) {
-		if (to.name === 'details' || to.name === 'account') {
+		if (to.name === 'details' || to.name === 'account' || to.name === 'about') {
 			return { x: 0, y: 0 };
 		}
 
@@ -41,6 +41,11 @@ const routerConfig = {
 			path: '/raised',
 			name: 'raised',
 			component: () => import('./views/Participants.vue')
+		},
+		{
+			path: '/about',
+			name: 'about',
+			component: () => import('./views/About.vue')
 		},
 		{
 			path: '*',
