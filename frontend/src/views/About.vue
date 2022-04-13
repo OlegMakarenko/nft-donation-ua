@@ -47,6 +47,7 @@
                                 <a 
                                     v-for="(exchange, index) in exchanges"
                                     class="exchange-item"
+                                    target="_blank"
                                     :href="exchange.url"
                                     :key="'exch' + index"
                                 >
@@ -67,7 +68,7 @@
                     </div>
                     <div class="text-crop margin-b text-width">
                         <p>
-                            Symbol wallets keep your private keys, that give you access to your cryptocurrencies – safe and accessible, allowing you to send and receive XYM tokens. You can use any of Symbol wallets listed below to make a donation and receive an NFT.
+                            Symbol wallets keep your private keys, that give you access to your cryptocurrency – safe and accessible, allowing you to send and receive XYM tokens. You can use any of Symbol wallets listed below to make a donation and receive an NFT.
                         </p>
                         <p>
                             Transfer XYM to your wallet to get started.
@@ -114,8 +115,8 @@
                             </p>
                         </div>
                         <div class="grid grid-gap-sm margin-b stores">
-                            <a href='https://play.google.com/store/apps/details?id=nem.group.symbol.wallet&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img class="play-store" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
-                            <a href='https://apps.apple.com/us/app/symbol-wallet/id1528741845'><img class="app-store" alt='Get it on App Store' src='../assets/app-store.svg'/></a>
+                            <a target="_blank" href='https://play.google.com/store/apps/details?id=nem.group.symbol.wallet&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img class="play-store" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
+                            <a target="_blank" href='https://apps.apple.com/us/app/symbol-wallet/id1528741845'><img class="app-store" alt='Get it on App Store' src='../assets/app-store.svg'/></a>
                         </div>
                         <hr class="margin-b">
                         <div class="text-crop margin-b-sm">
@@ -130,8 +131,8 @@
                             </p>
                         </div>
                         <div class="grid grid-gap-sm margin-b stores">
-                            <a href='https://play.google.com/store/apps/details?id=com.shu.software.symbol_arcana&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img class="play-store" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
-                            <a href='https://apps.apple.com/us/app/id1603599435'><img class="app-store" alt='Get it on App Store' src='../assets/app-store.svg'/></a>
+                            <a target="_blank" href='https://play.google.com/store/apps/details?id=com.shu.software.symbol_arcana&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img class="play-store" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
+                            <a target="_blank" href='https://apps.apple.com/us/app/id1603599435'><img class="app-store" alt='Get it on App Store' src='../assets/app-store.svg'/></a>
                         </div>
                     </div>
                 </WidthLimiter>

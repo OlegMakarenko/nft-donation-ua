@@ -2,6 +2,7 @@ const languages = {
 	'English': require('./en.json'),
 	'Українська': require('./ua.json'),
 	'日本語': require('./ja.json'),
+	'中文': require('./zh.json'),
 };
 
 const DEFAULT_LANGUAGE = 'English';

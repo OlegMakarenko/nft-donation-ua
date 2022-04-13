@@ -32,6 +32,8 @@
     "nft_details_page_mobile_wallet_t": "Mobile Wallet",
     "nft_details_page_desktop_wallet_t": "Desktop Wallet",
     "nft_details_page_out_of_stock": "This NFT is out of stock",
+    "nft_details_new_to_symbol_text": "Are you new to Symbol?",
+    "nft_details_new_to_symbol_link": "How to get XYM?",
     "account_page_input_placeholder": "Please enter your address to see owned NFTs",
     "account_page_show_button": "Show",
     "account_page_owned_t": "Owned NFTs",
