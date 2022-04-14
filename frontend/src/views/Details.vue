@@ -63,7 +63,7 @@
 							{{translate('nft_details_page_guide_p1')}} <code style="white-space: nowrap;" :key="amount">{{ amount }} XYM</code> {{translate('nft_details_page_guide_p2')}} <code>{{ address }}</code> {{translate('nft_details_page_guide_p3')}} <code>{{ id }}</code>{{translate('nft_details_page_guide_p4')}}
 							</p>
 							<p>{{translate('nft_details_page_guide_p5')}}</p>
-							<p><router-link class="label light" to="/about/">{{translate('nft_details_new_to_symbol_link')}}</router-link></p>
+							<p><router-link class="label text-link" to="/about/">{{translate('nft_details_new_to_symbol_link')}}</router-link></p>
 						</div>
 
 						<hr class="separastor" />
@@ -308,8 +308,9 @@ code {
 	flex-wrap: wrap;
 }
 
-.light {
-	color: #fff;
+.text-link {
+	color: var(--color-flag-blue-lighter);
+	text-decoration: underline;
 }
 
 .item-title {
