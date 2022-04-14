@@ -88,7 +88,7 @@
                                 Cross-platform client for Symbol to manage accounts, mosaics, namespaces, and issue transactions. Symbol Desktop Wallet is available for Linux, Mac, Windows, and as a web application.
                             </p>
                             <p>
-                                Download the Symbol Desktop Wallet installer from the <a class="label" target="_blank" href="https://docs.symbol.dev/guides/account/creating-an-account.html">releases section</a>.
+                                Download the Symbol Desktop Wallet installer from the <a class="label" target="_blank" href="https://github.com/symbol/desktop-wallet/releases/latest">assets section</a>.
                             </p>
                             <p>
                                 <a class="label" target="_blank" href="https://docs.symbol.dev/guides/account/creating-an-account.html">
