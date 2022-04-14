@@ -12,9 +12,12 @@
 							<div class="text-crop">
 								<p class="hero">
 									{{translate('home_page_description_p1')}} <a :href="explorerURL" target="_blank">{{mainAccountAddress}}</a>. {{translate('home_page_description_p2')}}
-									<router-link class="header-nav-link" to="/account/">
-										{{translate('home_page_description_link')}}
+									<router-link class="header-nav-link" to="/about/">
+										{{translate('link_symbol_learn_more')}}.
 									</router-link>
+									<!-- <router-link class="header-nav-link" to="/account/">
+										{{translate('home_page_description_link')}}
+									</router-link> -->
 								</p>
 							</div>
 						</div>

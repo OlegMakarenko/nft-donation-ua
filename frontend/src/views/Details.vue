@@ -64,6 +64,7 @@
 							</p>
 							<p>{{translate('nft_details_page_guide_p5')}}</p>
 							<p><router-link class="label text-link" to="/about/">{{translate('nft_details_new_to_symbol_link')}}</router-link></p>
+							<p><router-link class="label text-link" to="/account/">{{translate('home_page_description_link')}}</router-link></p>
 						</div>
 
 						<hr class="separastor" />
