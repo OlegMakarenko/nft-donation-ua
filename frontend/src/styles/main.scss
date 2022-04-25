@@ -414,3 +414,18 @@ h4 {
         transform: rotate(360deg);
     }
 }
+
+@keyframes flashing {
+    0%   {
+        filter: brightness(1.1);
+        
+    }
+    50%  {
+        filter: brightness(0.9);
+     
+    }
+    100% {
+        filter: brightness(1.1);
+        
+    }
+}

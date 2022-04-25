@@ -52,7 +52,7 @@
 		</div>
 		<div class="content-center account-background">
 			<div class="map-wrapper margin-b">
-				<div v-for="(nft, nftIndex) in ownedNFTs" :key="'block' + nftIndex">
+				<div v-for="(nft, nftIndex) in ownedNFTsMapData" :key="'block' + nftIndex">
 					<img 
 						v-for="(piece, pieceIndex) in getPieces(nft)"
 						class="nft-map-image"
@@ -116,6 +116,14 @@ export default {
 
 			return total;
 		},
+
+		ownedNFTsMapData() {
+			return this.ownedNFTs && this.ownedNFTs.length 
+				? [...this.ownedNFTs]
+					.reverse()
+					.sort((a, b) => a.zIndex - b.zIndex)
+				: [];
+		}
 	},
 
 	mounted() {

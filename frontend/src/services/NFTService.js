@@ -180,9 +180,10 @@ export class NFTService {
             mosaicId,
             count,
             position,
+            zIndex,
             size,
             price,
-            image
+            image,
         } = rawData;
 
         if (
@@ -191,6 +192,7 @@ export class NFTService {
             || !description
             || !mosaicId
             || isNaN(count)
+            || isNaN(zIndex)
             || isNaN(size)
             || isNaN(price)
             || !image
@@ -205,6 +207,7 @@ export class NFTService {
             mosaicId,
             count,
             position,
+            zIndex,
             size,
             price,
             image
